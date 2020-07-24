@@ -19,7 +19,6 @@ public class APlayer {
 	private final UUID uuid;
 
 	private String style = Config.STYLE;
-
 	private String globalPrefix = Config.GLOBAL_PREFIX;
 	private String localPrefix = Config.LOCAL_PREFIX;
 
@@ -34,15 +33,17 @@ public class APlayer {
 	}
 
 	public static APlayer getPlayer(Player player) {
-		if (!players.containsKey(player.getUniqueId())) {
+		return getPlayer(player.getUniqueId());
+	}
 
-			APlayer aplayer = new APlayer(player.getUniqueId());
+	public static APlayer getPlayer(UUID uuid) {
+		if (!players.containsKey(uuid)) {
+			APlayer aplayer = new APlayer(uuid);
 			aplayer.register();
 
 			return aplayer;
 		}
-
-		return players.get(player.getUniqueId());
+		return players.get(uuid);
 	}
 
 	public String getStyle() {
@@ -85,6 +86,10 @@ public class APlayer {
 		return notify;
 	}
 
+	public static Map<UUID, APlayer> getPlayers() {
+		return players;
+	}
+
 	public void register() {
 		players.putIfAbsent(uuid, this);
 	}
@@ -92,9 +97,9 @@ public class APlayer {
 	public void unregister() {
 		players.remove(uuid);
 	}
-	
-	public void load() {
 
+	/* Load player */
+	public void load() {
 		File folder = new File(Main.getInstance().getDataFolder() + File.separator + "players");
 		if (!folder.exists())
 			folder.mkdir();
@@ -108,6 +113,7 @@ public class APlayer {
 			localPrefix = config.getString("localPrefix");
 			mute = config.getBoolean("mute");
 			notify = config.getBoolean("notify");
+
 		} else {
 			try {
 				file.createNewFile();
@@ -127,6 +133,7 @@ public class APlayer {
 		}
 	}
 
+	/* Save player */
 	public void save() {
 		File folder = new File(Main.getInstance().getDataFolder() + File.separator + "players");
 		File file = new File(folder, uuid + ".yml");

@@ -24,9 +24,9 @@ public class PlayerIdentification implements Listener {
 	@EventHandler
 	public void onQuit(PlayerQuitEvent e) {
 		Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), () -> {
-
 			APlayer aplayer = APlayer.getPlayer(e.getPlayer());
 			aplayer.save();
+
 			aplayer.unregister();
 		});
 	}

@@ -8,6 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import ru.deelter.mystyle.chat.Chat;
 import ru.deelter.mystyle.chat.JoinAndQuit;
 import ru.deelter.mystyle.commands.ChatSettings;
+import ru.deelter.mystyle.player.APlayer;
 import ru.deelter.mystyle.player.PlayerIdentification;
 
 public class Main extends JavaPlugin implements Listener {
@@ -33,7 +34,12 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	public void onDisable() {
-		// Chat.saveStyles();
+		APlayer.getPlayers().keySet().forEach(uuid -> {
+			APlayer aplayer = APlayer.getPlayer(uuid);
+			aplayer.save();
+
+			aplayer.unregister();
+		});
 	}
 	
 	public static JavaPlugin getInstance() {

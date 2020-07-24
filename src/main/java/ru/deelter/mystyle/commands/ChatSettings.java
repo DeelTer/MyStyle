@@ -67,7 +67,7 @@ public class ChatSettings implements CommandExecutor, Listener {
 					String oldPrefix = isGlobal ? aplayer.getGlobalPrefix() : aplayer.getLocalPrefix();
 					String newPrefix = isGlobal ? Config.GLOBAL_PREFIX : Config.LOCAL_PREFIX;
 
-					if (args[2] != null) {
+					if (args.length > 2) {
 						newPrefix = args[2];
 					}
 
@@ -90,7 +90,7 @@ public class ChatSettings implements CommandExecutor, Listener {
 					if (args.length > 1) {
 						newStyle = String.join(" ", args).substring(args[0].length() + 1);
 
-						if (newStyle.length() > 50){
+						if (newStyle.length() > 50) {
 							sender.sendMessage("Стиль чата не должен быть таким длинным!");
 							return true;
 						}

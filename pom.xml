@@ -9,14 +9,14 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>Mychat</name>
+    <name>MyStyle</name>
 
     <description>Flexible chat settings for each player</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <url>vk.com/deelter</url>
+    <url>https://vk.com/deelter</url>
 
     <build>
         <plugins>

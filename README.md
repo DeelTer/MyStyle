@@ -12,7 +12,7 @@
 
 ### Commands
 * /cs reload - Reload config
-* /cs mute - ON/OFF global chat
-* /cs notify - ON/OFF notifications about player join and quit
-* /cs style <STYLE> - Change your chat style ( placeholders: %PLAYER% & %MESSAGE% )
-* /cs prefix <LOCAL/GLOBAL> <PREFIX> - Change your chat prefix
+* /cs mute - Enable or disable global chat
+* /cs notify - Enable or disable notifications about player join and quit
+* /cs style <style> - Change your chat style ( placeholders: %PLAYER% & %MESSAGE% )
+* /cs prefix <local/global> <prefix> - Change your chat prefix

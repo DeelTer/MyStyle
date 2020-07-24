@@ -1,14 +1,11 @@
 package ru.deelter.mychat.commands;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import net.md_5.bungee.api.ChatColor;
 import ru.deelter.mychat.Config;
 import ru.deelter.mychat.player.APlayer;
 
@@ -65,7 +62,7 @@ public class ChatSettings implements CommandExecutor, Listener {
 						return true;
 					}
 
-					boolean isGlobal = args[1].equalsIgnoreCase("local") ? false : true;
+					boolean isGlobal = !args[1].equalsIgnoreCase("local");
 
 					String oldPrefix = isGlobal ? aplayer.getGlobalPrefix() : aplayer.getLocalPrefix();
 					String newPrefix = isGlobal ? Config.GLOBAL_PREFIX : Config.LOCAL_PREFIX;
@@ -91,7 +88,7 @@ public class ChatSettings implements CommandExecutor, Listener {
 					String style = aplayer.getStyle();
 					String newStyle = Config.STYLE;
 					if (args.length > 1) {
-						newStyle = Arrays.stream(args).collect(Collectors.joining(" ")).substring(args[0].length() + 1);
+						newStyle = String.join(" ", args).substring(args[0].length() + 1);
 
 						if (newStyle.length() > 50){
 							sender.sendMessage("Стиль чата не должен быть таким длинным!");
@@ -114,7 +111,7 @@ public class ChatSettings implements CommandExecutor, Listener {
 	private String getHelpPage() {
 		StringBuilder help = new StringBuilder();
 		for (String s : Config.HELP_PAGE)
-			help.append(ChatColor.translateAlternateColorCodes('&', s) + "\n");
+			help.append(ChatColor.translateAlternateColorCodes('&', s)).append("\n");
 
 		return help.toString();
 	}

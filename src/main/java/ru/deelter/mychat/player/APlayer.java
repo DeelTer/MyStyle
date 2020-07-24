@@ -16,7 +16,7 @@ import ru.deelter.mychat.Main;
 
 public class APlayer {
 
-	private UUID uuid;
+	private final UUID uuid;
 
 	private String style = Config.STYLE;
 
@@ -26,7 +26,7 @@ public class APlayer {
 	private boolean mute = Config.MUTE;
 	private boolean notify = Config.NOTIFY;
 
-	private static Map<UUID, APlayer> players = new HashMap<>();
+	private static final Map<UUID, APlayer> players = new HashMap<>();
 
 	public APlayer(UUID uuid) {
 		this.uuid = uuid;
@@ -43,10 +43,6 @@ public class APlayer {
 		}
 
 		return players.get(player.getUniqueId());
-	}
-
-	public UUID getUUID() {
-		return uuid;
 	}
 
 	public String getStyle() {
@@ -116,19 +112,17 @@ public class APlayer {
 			try {
 				file.createNewFile();
 
-				StringBuilder text = new StringBuilder();
-				text.append("style: '" + style + "'\n");
-				text.append("globalPrefix: '" + globalPrefix + "'\n");
-				text.append("localPrefix: '" + localPrefix + "'\n");
-				text.append("mute: '" + mute + "'\n");
-				text.append("notify: '" + notify + "'\n");
-
 				FileWriter writer = new FileWriter(file.getPath(), true);
 				BufferedWriter bufferWriter = new BufferedWriter(writer);
-				bufferWriter.write(text.toString());
+				String text = "style: '" + style + "'\n" +
+						"globalPrefix: '" + globalPrefix + "'\n" +
+						"localPrefix: '" + localPrefix + "'\n" +
+						"mute: '" + mute + "'\n" +
+						"notify: '" + notify + "'\n";
+				bufferWriter.write(text);
 				bufferWriter.close();
 			} catch (IOException e) {
-				System.out.println(e);
+				e.printStackTrace();
 			}
 		}
 	}
@@ -146,7 +140,7 @@ public class APlayer {
 		try {
 			config.save(file);
 		} catch (IOException e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 	}
 }

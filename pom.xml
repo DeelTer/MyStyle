@@ -6,12 +6,12 @@
 
     <groupId>ru.deelter</groupId>
     <artifactId>mychat</artifactId>
-    <version>4.0</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>Mychat</name>
 
-    <description>cool chat for SP</description>
+    <description>Flexible chat settings for each player</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

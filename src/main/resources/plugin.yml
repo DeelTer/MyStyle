@@ -1,10 +1,10 @@
-name: Mychat
+name: MyStyle
 version: ${project.version}
 main: ru.deelter.mychat.Main
 api-version: 1.15
-prefix: MyChat
+prefix: MyStyle
 authors: [DeelTer]
-description: cool chat for SP
+description: Flexible chat settings for each player
 website: vk.com/deelter
 commands:
   chatsettings:

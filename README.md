@@ -10,10 +10,11 @@
   
 </div>
 
+<div align="center">
 ### Commands
 * /cs reload - Reload config
 * /cs mute - Enable or disable global chat
 * /cs notify - Enable or disable notifications about player join and quit
 * /cs style <style> - Change your chat style ( placeholders: %PLAYER% and %MESSAGE% )
 * /cs prefix <local/global> <prefix> - Change your chat prefix
- 
+  </div>

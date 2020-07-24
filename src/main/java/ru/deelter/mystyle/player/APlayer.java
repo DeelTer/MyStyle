@@ -117,8 +117,8 @@ public class APlayer {
 				String text = "style: '" + style + "'\n" +
 						"globalPrefix: '" + globalPrefix + "'\n" +
 						"localPrefix: '" + localPrefix + "'\n" +
-						"mute: '" + mute + "'\n" +
-						"notify: '" + notify + "'\n";
+						"mute: " + mute + "\n" +
+						"notify: " + notify;
 				bufferWriter.write(text);
 				bufferWriter.close();
 			} catch (IOException e) {

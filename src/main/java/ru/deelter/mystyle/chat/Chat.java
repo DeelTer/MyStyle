@@ -49,7 +49,7 @@ public class Chat implements Listener {
 			style = style.replaceAll("%MESSAGE%", message);
 
 			String prefix = isGlobal ? Utils.colorize(arecipient.getGlobalPrefix()) : Utils.colorize(arecipient.getLocalPrefix());
-			recipient.sendMessage(prefix + " " + style);
+			recipient.sendMessage(prefix + style);
 		}
 		Bukkit.getConsoleSender().sendMessage((isGlobal ? "G " : "L ") + player.getName() + ": " + message);
 	}

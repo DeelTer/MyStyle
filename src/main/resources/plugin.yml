@@ -1,6 +1,6 @@
 name: MyStyle
 version: ${project.version}
-main: ru.deelter.mychat.Main
+main: ru.deelter.mystyle.Main
 api-version: 1.15
 prefix: MyStyle
 authors: [DeelTer]

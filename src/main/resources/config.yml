@@ -13,8 +13,8 @@
 
 default-values:
   style: '&f%PLAYER%&f: %MESSAGE%'
-  global-prefix: '&6G'
-  local-prefix: '&aL'
+  global-prefix: '&6G '
+  local-prefix: '&aL '
   radius: 100
   mute: false
   notify: true

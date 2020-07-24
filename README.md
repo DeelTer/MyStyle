@@ -10,7 +10,7 @@
   
 </div>
 
-<div align="center">
+<div>
 ### Commands
 * /cs reload - Reload config
 * /cs mute - Enable or disable global chat

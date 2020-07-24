@@ -68,11 +68,11 @@ public class ChatSettings implements CommandExecutor, Listener {
 					String newPrefix = isGlobal ? Config.GLOBAL_PREFIX : Config.LOCAL_PREFIX;
 
 					if (args.length > 2) {
-						newPrefix = args[2];
+						newPrefix = args[2] + " ";
 					}
 
-					if(isGlobal) aplayer.setGlobalPrefix(newPrefix + " ");
-					else aplayer.setLocalPrefix(newPrefix + " ");
+					if(isGlobal) aplayer.setGlobalPrefix(newPrefix);
+					else aplayer.setLocalPrefix(newPrefix);
 
 					sender.sendMessage("Вы поменяли префикс " + (isGlobal ? "глобального" : "локального") + " чата с \"" + oldPrefix + "\" на \"" + newPrefix + "\"");
 					return true;
@@ -115,16 +115,4 @@ public class ChatSettings implements CommandExecutor, Listener {
 
 		return help.toString();
 	}
-
-//	private boolean isInteger(String s) {
-//		try {
-//			Integer.parseInt(s);
-//		} catch (NumberFormatException e) {
-//			return false;
-//		} catch (NullPointerException e) {
-//			return false;
-//		}
-//
-//		return true;
-//	}
 }

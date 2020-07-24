@@ -17,7 +17,6 @@ public class Chat implements Listener {
 		e.setCancelled(true);
 
 		Player player = e.getPlayer();
-
 		String message = e.getMessage();
 		boolean isGlobal = false;
 
@@ -45,13 +44,13 @@ public class Chat implements Listener {
 
 			APlayer arecipient = APlayer.getPlayer(recipient);
 			String style = Utils.colorize(arecipient.getStyle());
-			style = style.replaceAll("%PLAYER%", player.getName());
-			style = style.replaceAll("%MESSAGE%", message);
+			style = style.replace("%PLAYER%", player.getName());
+			style = style.replace("%MESSAGE%", message);
 
 			String prefix = isGlobal ? Utils.colorize(arecipient.getGlobalPrefix()) : Utils.colorize(arecipient.getLocalPrefix());
 			recipient.sendMessage(prefix + style);
 		}
-		Bukkit.getConsoleSender().sendMessage((isGlobal ? "G " : "L ") + player.getName() + ": " + message);
+		Bukkit.getConsoleSender().sendMessage((isGlobal ? "[G] " : "[L] ") + player.getName() + ": " + message);
 	}
 
 	private boolean isFar(Player player1, Player player2) {

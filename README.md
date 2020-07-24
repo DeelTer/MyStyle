@@ -1,5 +1,5 @@
 
-<img src="https://sun1-85.userapi.com/dTKEIVOQuzKF8XfiMt1tn5QZZIWhKKILRNkAQw/RQkUPRn_piA.jpg" alt="DonationAlerts" align="center">
+<img src="https://sun9-70.userapi.com/6h5zjNvnCIP7j-tvfgWtG8DuJfm5IcvN2Ti-pg/CIjFbUCYrec.jpg" alt="MyStyle" align="center">
 
 <div align="center">
   <h1> </h1>

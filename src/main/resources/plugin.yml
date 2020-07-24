@@ -1,0 +1,13 @@
+name: Mychat
+version: ${project.version}
+main: ru.deelter.mychat.Main
+api-version: 1.15
+prefix: MyChat
+authors: [DeelTer]
+description: cool chat for SP
+website: vk.com/deelter
+commands:
+  chatsettings:
+    aliases: ["cs"]
+    description: set your chat
+    usage: /<command>

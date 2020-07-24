@@ -1,0 +1,38 @@
+####################################################
+#                                                  #
+#                  |   MYCHAT   |                  #
+#                                                  #
+####################################################
+
+#Contact with me:
+#
+#VK: vk.com/deelter
+#DISCORD: DeelTer#4782
+#TWITTER: twitter.com/roma200315
+#YOUTUBE: www.youtube.com/channel/UCRACU2JfOfClrlEHImv5pYw
+
+default-values:
+  style: '&f%PLAYER%&f: %MESSAGE%'
+  global-prefix: '&6G'
+  local-prefix: '&aL'
+  radius: 100
+  mute: false
+  notify: true
+
+messages:
+  no-perm: '&6You have no permissions to do this'
+  reload: '&aConfiguration reloaded!'
+
+permissions:
+  mute: 'mychat.mute' #Mute your global chat (/cs mute)
+  notify: 'mychat.notify' #Off notifications about join/quit players (/cs notify)
+  style: 'mychat.style' #Set your own style of chat (/cs style)
+  prefix: 'mychat.prefix' #Set your own prefixes (/cs prefix)
+
+help:
+- '&a/cs style <style> &f- Изменить свой стиль чата. Переменные: (%PLAYER%; %MESSAGE%)'
+- '&a/cs prefix <local/global> <префикс> &f- Установить префикс глобального/локального чата!'
+- '&a/cs notify &f- Вкл/выкл уведомления о входе и выходе игроков'
+- '&a/cs mute &f- Вкл/выкл глобальный чат (работает только для игрока)'
+
+disable-logs: false

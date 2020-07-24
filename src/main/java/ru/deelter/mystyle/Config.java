@@ -1,4 +1,4 @@
-package ru.deelter.mychat;
+package ru.deelter.mystyle;
 
 import java.util.List;
 

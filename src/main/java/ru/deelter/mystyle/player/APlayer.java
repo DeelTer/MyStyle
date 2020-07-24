@@ -1,4 +1,4 @@
-package ru.deelter.mychat.player;
+package ru.deelter.mystyle.player;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,8 +11,8 @@ import java.util.UUID;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import ru.deelter.mychat.Config;
-import ru.deelter.mychat.Main;
+import ru.deelter.mystyle.Config;
+import ru.deelter.mystyle.Main;
 
 public class APlayer {
 

@@ -1,4 +1,4 @@
-package ru.deelter.mychat.player;
+package ru.deelter.mystyle.player;
 
 import java.util.UUID;
 
@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import ru.deelter.mychat.Main;
+import ru.deelter.mystyle.Main;
 
 public class PlayerIdentification implements Listener {
 

@@ -1,4 +1,4 @@
-package ru.deelter.mychat.utils;
+package ru.deelter.mystyle.utils;
 
 import org.bukkit.ChatColor;
 

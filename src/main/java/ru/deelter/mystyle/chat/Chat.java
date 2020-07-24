@@ -1,4 +1,4 @@
-package ru.deelter.mychat.chat;
+package ru.deelter.mystyle.chat;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -6,9 +6,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import ru.deelter.mychat.Config;
-import ru.deelter.mychat.player.APlayer;
-import ru.deelter.mychat.utils.Utils;
+import ru.deelter.mystyle.Config;
+import ru.deelter.mystyle.player.APlayer;
+import ru.deelter.mystyle.utils.Utils;
 
 public class Chat implements Listener {
 

@@ -8,6 +8,6 @@ description: Flexible chat settings for each player
 website: vk.com/deelter
 commands:
   chatsettings:
-    aliases: ["cs"]
+    aliases: ["cs", "mystyle"]
     description: set your chat
     usage: /<command>

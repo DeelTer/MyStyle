@@ -1,14 +1,14 @@
-package ru.deelter.mychat;
+package ru.deelter.mystyle;
 
 import java.io.File;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import ru.deelter.mychat.chat.Chat;
-import ru.deelter.mychat.chat.JoinAndQuit;
-import ru.deelter.mychat.commands.ChatSettings;
-import ru.deelter.mychat.player.PlayerIdentification;
+import ru.deelter.mystyle.chat.Chat;
+import ru.deelter.mystyle.chat.JoinAndQuit;
+import ru.deelter.mystyle.commands.ChatSettings;
+import ru.deelter.mystyle.player.PlayerIdentification;
 
 public class Main extends JavaPlugin implements Listener {
 	

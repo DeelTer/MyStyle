@@ -1,4 +1,4 @@
-package ru.deelter.mychat.chat;
+package ru.deelter.mystyle.chat;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -7,8 +7,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import ru.deelter.mychat.player.APlayer;
-import ru.deelter.mychat.utils.Utils;
+import ru.deelter.mystyle.player.APlayer;
+import ru.deelter.mystyle.utils.Utils;
 
 public class JoinAndQuit implements Listener {
 

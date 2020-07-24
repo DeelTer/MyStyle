@@ -1,4 +1,4 @@
-package ru.deelter.mychat.commands;
+package ru.deelter.mystyle.commands;
 
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
@@ -6,8 +6,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import ru.deelter.mychat.Config;
-import ru.deelter.mychat.player.APlayer;
+import ru.deelter.mystyle.Config;
+import ru.deelter.mystyle.player.APlayer;
 
 public class ChatSettings implements CommandExecutor, Listener {
 

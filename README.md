@@ -16,3 +16,4 @@
 * /cs notify - Enable or disable notifications about player join and quit
 * /cs style <style> - Change your chat style ( placeholders: %PLAYER% & %MESSAGE% )
 * /cs prefix <local/global> <prefix> - Change your chat prefix
+ 

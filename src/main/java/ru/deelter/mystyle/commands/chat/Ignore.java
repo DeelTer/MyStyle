@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import ru.deelter.mystyle.Config;
 import ru.deelter.mystyle.player.APlayer;
 import ru.deelter.mystyle.utils.Other;
 
@@ -30,13 +31,13 @@ public class Ignore implements CommandExecutor {
 
         APlayer aPlayer = APlayer.getPlayer(player);
         if (aPlayer.getIgnoreList().contains(target.getUniqueId().toString())) {
-            player.sendMessage(Other.color("&8[&6#&8] &fВы больше не игнорируете " + args[0]));
+            player.sendMessage(Config.MSG_IGNORE_REMOVE.replace("%PLAYER%", args[0]));
             aPlayer.setIgnore(target.getUniqueId(), false);
             return true;
         }
 
         aPlayer.setIgnore(target.getUniqueId(), true);
-        player.sendMessage(Other.color("&8[&6#&8] &fТеперь вы игнорируете " + args[0]));
+        player.sendMessage(Config.MSG_IGNORE_ADD.replace("%PLAYER%", args[0]));
         return true;
     }
 }

@@ -38,6 +38,10 @@ messages:
     global-disable: "&8[&c#&8]&c У вас отключен глобальный чат"
     cooldown: "&8[&c#&8]&c Вы не можете писать в чат так часто!"
 
+    ignore-you: "&8[&c#&8] &fДанный игрок игнорирует вас"
+    player-ignore-add: "&8[&6#&8] &fТеперь вы игнорируете %PLAYER%"
+    player-ignore-remove: "&8[&6#&8] &fВы больше не игнорируете %PLAYER%"
+
 disable-logs: false
 ##DEPRECATED: soon will remove this
 #

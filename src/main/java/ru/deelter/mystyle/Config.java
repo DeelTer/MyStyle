@@ -30,6 +30,10 @@ public class Config {
 	public static String MSG_GLOBAL_DISABLE;
 	public static String MSG_COOLDOWN;
 
+	public static String MSG_PLAYER_IGNORE_YOU;
+	public static String MSG_IGNORE_ADD;
+	public static String MSG_IGNORE_REMOVE;
+
 	/* Permissions */
 	public static String MUTE_PERM;
 	public static String STYLE_PERM;
@@ -62,6 +66,10 @@ public class Config {
 		MSG_NO_PLAYERS = Other.color(config.getString("messages.chat.no-players"));
 		MSG_GLOBAL_DISABLE = Other.color(config.getString("messages.chat.global-disable"));
 		MSG_COOLDOWN = Other.color(config.getString("messages.chat.cooldown"));
+
+		MSG_PLAYER_IGNORE_YOU = Other.color(config.getString("messages.chat.ignore-you"));
+		MSG_IGNORE_ADD = Other.color(config.getString("messages.chat.ignore-you"));
+		MSG_IGNORE_REMOVE = Other.color(config.getString("messages.chat.ignore-you"));
 
 		/* Permissions */
 		MUTE_PERM = config.getString("permissions.mute");

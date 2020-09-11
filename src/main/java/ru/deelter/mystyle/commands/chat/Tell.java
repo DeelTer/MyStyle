@@ -8,6 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import ru.deelter.mystyle.Config;
 import ru.deelter.mystyle.player.APlayer;
 import ru.deelter.mystyle.utils.Other;
 
@@ -33,8 +34,8 @@ public class Tell implements CommandExecutor {
         }
 
         APlayer aTarget = APlayer.getPlayer(target);
-        if (aTarget.getIgnoreList().contains(target.getUniqueId().toString())) {
-            player.sendMessage(Other.color("&8[&c#&8] &fДанный игрок игнорирует вас"));
+        if (aTarget.getIgnoreList().contains(player.getUniqueId().toString())) {
+            player.sendMessage(Config.MSG_PLAYER_IGNORE_YOU);
             return true;
         }
 

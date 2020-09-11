@@ -30,7 +30,7 @@ public class Chat implements Listener {
 		} else { /* if global chat */
 			/* if player disable global chat */
 			if (APlayer.getPlayer(player).isMute()) {
-				player.sendMessage(Other.color("&cУ вас отключен глобальный чат, используйте &6/cs mute"));
+				player.sendMessage(Other.color("&cУ вас отключен глобальный чат, используйте &6/mystyle"));
 				return;
 			}
 
@@ -42,12 +42,12 @@ public class Chat implements Listener {
 		/* Sending message */
 		for (Player recipient : e.getRecipients()) {
 
-			APlayer arecipient = APlayer.getPlayer(recipient);
-			String style = Other.color(arecipient.getStyle());
+			APlayer aRecipient = APlayer.getPlayer(recipient);
+			String style = Other.color(aRecipient.getStyle());
 			style = style.replace("%PLAYER%", player.getName());
 			style = style.replace("%MESSAGE%", message);
 
-			String prefix = isGlobal ? Other.color(arecipient.getGlobalPrefix()) : Other.color(arecipient.getLocalPrefix());
+			String prefix = isGlobal ? Other.color(aRecipient.getGlobalPrefix()) : Other.color(aRecipient.getLocalPrefix());
 			recipient.sendMessage(prefix + style);
 		}
 		Bukkit.getConsoleSender().sendMessage((isGlobal ? "[G] " : "[L] ") + player.getName() + ": " + message);

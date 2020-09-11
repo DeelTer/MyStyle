@@ -21,8 +21,8 @@ public class Database {
 					+ "`UUID` varchar(64) PRIMARY KEY,"
 					+ "`IGNORE` varchar(64) NOT NULL,"
 					+ "`STYLE` varchar(64) NOT NULL,"
-					+ "`GLOBAL-PREFIX` varchar(64) NOT NULL,"
-					+ "`LOCAL-PREFIX` varchar(64) NOT NULL,"
+					+ "`GLOBAL_PREFIX` varchar(64) NOT NULL,"
+					+ "`LOCAL_PREFIX` varchar(64) NOT NULL,"
 					+ "`MUTE` TINYINT(1) NOT NULL,"
 					+ "`NOTIFY` TINYINT(1) NOT NULL" + ");")
 					.executeUpdate();

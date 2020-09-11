@@ -19,6 +19,9 @@ default-values:
   mute: false
   notify: true
 
+settings:
+  enable-private: true
+
 messages:
   no-perm: '&6You have no permissions to do this'
   reload: '&aConfiguration reloaded!'

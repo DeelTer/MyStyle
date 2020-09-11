@@ -43,7 +43,7 @@ public class ChatSettings implements CommandExecutor, Listener {
 					}
 
 					boolean setVisible = args[1].equalsIgnoreCase("false");
-					sender.sendMessage(Other.color(setVisible ? "&8[&a#&8] &fВы включили глобальный чат" : "&8[&c#&8]&f Вы выключили глобальный чат"));
+					sender.sendMessage(Other.color(setVisible ? "&8[&e#&8]&f Вы выключили глобальный чат" : "&8[&a#&8] &fВы включили глобальный чат"));
 					aplayer.setMute(setVisible);
 					return true;
 				}
@@ -61,7 +61,7 @@ public class ChatSettings implements CommandExecutor, Listener {
 					}
 
 					boolean setVisible = args[1].equalsIgnoreCase("false");
-					sender.sendMessage(Other.color(setVisible ? "&8[&c#&8] &fВы выключили оповещения о входе/выходе игроков" : "&8[&a#&8] &fВы включили оповещения о входе/выходе игроков"));
+					sender.sendMessage(Other.color(setVisible ? "&8[&e#&8] &fВы включили оповещения о входе/выходе игроков" : "&8[&c#&8] &fВы выключили оповещения о входе/выходе игроков"));
 					aplayer.setNotify(setVisible);
 					return true;
 				}
@@ -79,7 +79,6 @@ public class ChatSettings implements CommandExecutor, Listener {
 					}
 
 					boolean isGlobal = !args[1].equalsIgnoreCase("local");
-
 					String oldPrefix = isGlobal ? aplayer.getGlobalPrefix() : aplayer.getLocalPrefix();
 					String newPrefix = isGlobal ? Config.GLOBAL_PREFIX : Config.LOCAL_PREFIX;
 
@@ -104,8 +103,8 @@ public class ChatSettings implements CommandExecutor, Listener {
 					String style = aplayer.getStyle();
 					String newStyle = Config.STYLE;
 					if (args.length > 1) {
-						newStyle = String.join(" ", args).substring(args[0].length() + 1);
 
+						newStyle = String.join(" ", args).substring(args[0].length() + 1);
 						if (newStyle.length() > 50) {
 							sender.sendMessage(Other.color("&8[&c#&8] &fСтиль чата не должен быть таким длинным!"));
 							return true;
@@ -134,23 +133,44 @@ public class ChatSettings implements CommandExecutor, Listener {
 		TextComponent enableGlobal = new TextComponent(Other.color("[&aВключить&f]"));
 		TextComponent disableGlobal = new TextComponent(Other.color("&f [&cВыключить&f]"));
 
+		TextComponent component3 = new TextComponent(Other.color("\n\n&8[&6#&8] &fИзменение префикса: "));
+		TextComponent globalPrefix = new TextComponent(Other.color("[&6Глобальный&f]"));
+		TextComponent localPrefix = new TextComponent(Other.color("&f [&6Локальный&f]"));
+
+		TextComponent component4 = new TextComponent(Other.color("\n&8[&6#&8] &fИзменение стиля чата: "));
+		TextComponent style = new TextComponent(Other.color("[&6Изменить&f]"));
+
 		/* WORK */
 		enableNotify.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(Other.color("Кликните, чтобы&a включить &f\nуведомления о входе/выходе"))));
-		enableNotify.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/cs notify true"));
+		enableNotify.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/mystyle notify true"));
 		component.addExtra(enableNotify);
 
 		disableNotify.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(Other.color("Кликните, чтобы&c выключить &f\nуведомления о входе/выходе"))));
-		disableNotify.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/cs mute false"));
+		disableNotify.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/mystyle notify false"));
 		enableNotify.addExtra(disableNotify);
 
-		enableGlobal.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(Other.color("Кликните, чтобы&a включить &f\nглобальный чат"))));
-		enableGlobal.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/cs mute true"));
-		component.addExtra(enableGlobal);
+		enableGlobal.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(Other.color("Кликните, чтобы&a включить &f\nвидимость глобального чата"))));
+		enableGlobal.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/mystyle mute true"));
+		component2.addExtra(enableGlobal);
 
-		disableGlobal.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(Other.color("Кликните, чтобы&c выключить &f\nглобальный чат"))));
-		disableGlobal.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/cs mute false"));
-		component.addExtra(disableGlobal);
+		disableGlobal.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(Other.color("Кликните, чтобы&c выключить &f\nвидимость глобального чата"))));
+		disableGlobal.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/mystyle mute false"));
+		component2.addExtra(disableGlobal);
 		component.addExtra(component2);
+
+		globalPrefix.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(Other.color("Кликните, чтобы показать команду &f\nдля изменения&6 глобального&f префикса"))));
+		globalPrefix.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/mystyle prefix global " + Config.GLOBAL_PREFIX));
+		component3.addExtra(globalPrefix);
+
+		localPrefix.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(Other.color("Кликните, чтобы показать команду &f\nдля изменения&a локального&f префикса"))));
+		localPrefix.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/mystyle prefix local " + Config.LOCAL_PREFIX));
+		component3.addExtra(localPrefix);
+		component2.addExtra(component3);
+
+		style.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(Other.color("Кликните, чтобы показать команду &f\nдля изменения&6 стиля&f чата\n&f\n&7%%PLAYER% - вместо неё будет ник\n%MESSAGE% - вместо неё будет сообщение"))));
+		style.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/mystyle style " + Config.STYLE));
+		component4.addExtra(style);
+		component3.addExtra(component4);
 
 		player.sendMessage(component);
 	}

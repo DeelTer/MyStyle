@@ -113,8 +113,8 @@ public class APlayer {
 
 			while (rs.next()) {
 				style = rs.getString("STYLE");
-				globalPrefix = rs.getString("GLOBAL-PREFIX");
-				localPrefix = rs.getString("LOCAL-PREFIX");
+				globalPrefix = rs.getString("GLOBAL_PREFIX");
+				localPrefix = rs.getString("LOCAL_PREFIX");
 				mute = rs.getBoolean("MUTE");
 				notify = rs.getBoolean("NOTIFY");
 			}
@@ -161,7 +161,7 @@ public class APlayer {
 	/* Save player */
 	public void save() {
 		try (Connection con = Database.openConnection()) {
-			String sql = "REPLACE INTO Tokens (UUID,IGNORE,STYLE,GLOBAL-PREFIX,LOCAL-PREFIX,MUTE,NOTIFY) VALUES(?,?,?,?,?,?,?);";
+			String sql = "REPLACE INTO Players (UUID,IGNORE,STYLE,GLOBAL_PREFIX,LOCAL_PREFIX,MUTE,NOTIFY) VALUES(?,?,?,?,?,?,?);";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, uuid.toString());
 			ps.setString(2, "");

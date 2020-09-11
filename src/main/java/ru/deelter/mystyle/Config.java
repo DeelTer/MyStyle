@@ -68,8 +68,8 @@ public class Config {
 		MSG_COOLDOWN = Other.color(config.getString("messages.chat.cooldown"));
 
 		MSG_PLAYER_IGNORE_YOU = Other.color(config.getString("messages.chat.ignore-you"));
-		MSG_IGNORE_ADD = Other.color(config.getString("messages.chat.ignore-you"));
-		MSG_IGNORE_REMOVE = Other.color(config.getString("messages.chat.ignore-you"));
+		MSG_IGNORE_ADD = Other.color(config.getString("messages.chat.player-ignore-add"));
+		MSG_IGNORE_REMOVE = Other.color(config.getString("messages.chat.player-ignore-remove"));
 
 		/* Permissions */
 		MUTE_PERM = config.getString("permissions.mute");

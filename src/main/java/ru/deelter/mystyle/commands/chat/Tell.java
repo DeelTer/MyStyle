@@ -39,11 +39,11 @@ public class Tell implements CommandExecutor {
             return true;
         }
 
-            TextComponent chat = new TextComponent(Other.color("&6[&f" + player.getName() + "&6]&f " + msg));
+            TextComponent chat = new TextComponent(Other.color("&8[&7" + player.getName() + "&8]&f ") + msg);
             chat.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + label + " " + player.getName() + " "));
             target.sendMessage(chat);
 
-            String message = Other.color("&6[&f" + player.getName() + " &6->&f " + args[0] + "&6]&f " + msg);
+            String message = Other.color("&8[&7" + player.getName() + " &6->&7 " + args[0] + "&8]&f ") + msg;
             player.sendMessage(message);
 
             /* Sound */

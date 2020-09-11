@@ -1,18 +1,16 @@
 package ru.deelter.mystyle.player;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import org.bukkit.entity.Player;
+import ru.deelter.mystyle.Config;
+import ru.deelter.mystyle.database.Database;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
-
-import ru.deelter.mystyle.Config;
-import ru.deelter.mystyle.Main;
 
 public class APlayer {
 
@@ -100,6 +98,32 @@ public class APlayer {
 
 	/* Load player */
 	public void load() {
+		/* Default values */
+		style = Config.STYLE;
+		globalPrefix = Config.GLOBAL_PREFIX;
+		localPrefix = Config.LOCAL_PREFIX;
+		mute = Config.MUTE;
+		notify = Config.NOTIFY;
+
+		/* Database connect */
+		try (Connection con = Database.openConnection()) {
+			String sql = "SELECT * FROM Players WHERE UUID = '" + uuid + "';";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				style = rs.getString("STYLE");
+				globalPrefix = rs.getString("GLOBAL-PREFIX");
+				localPrefix = rs.getString("LOCAL-PREFIX");
+				mute = rs.getBoolean("MUTE");
+				notify = rs.getBoolean("NOTIFY");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	/*
+	public void load() {
 		File folder = new File(Main.getInstance().getDataFolder() + File.separator + "players");
 		if (!folder.exists())
 			folder.mkdir();
@@ -132,8 +156,28 @@ public class APlayer {
 			}
 		}
 	}
+	*/
 
 	/* Save player */
+	public void save() {
+		try (Connection con = Database.openConnection()) {
+			String sql = "REPLACE INTO Tokens (UUID,IGNORE,STYLE,GLOBAL-PREFIX,LOCAL-PREFIX,MUTE,NOTIFY) VALUES(?,?,?,?,?,?,?);";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, uuid.toString());
+			ps.setString(2, "");
+			ps.setString(3, style);
+			ps.setString(4, globalPrefix);
+			ps.setString(5, localPrefix);
+			ps.setBoolean(6, mute);
+			ps.setBoolean(7, notify);
+
+			ps.executeUpdate();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	/*
 	public void save() {
 		File folder = new File(Main.getInstance().getDataFolder() + File.separator + "players");
 		File file = new File(folder, uuid + ".yml");
@@ -150,4 +194,5 @@ public class APlayer {
 			e.printStackTrace();
 		}
 	}
+	 */
 }

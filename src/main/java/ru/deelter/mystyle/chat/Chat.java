@@ -8,7 +8,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import ru.deelter.mystyle.Config;
 import ru.deelter.mystyle.player.APlayer;
-import ru.deelter.mystyle.utils.Utils;
+import ru.deelter.mystyle.utils.Other;
 
 public class Chat implements Listener {
 
@@ -24,13 +24,13 @@ public class Chat implements Listener {
 
 			e.getRecipients().removeIf(other -> isFar(player, other));
 			if (e.getRecipients().size() == 1) {
-				player.sendMessage(Utils.colorize("&cВ вашем радиусе нет игроков"));
+				player.sendMessage(Other.color("&cВ вашем радиусе нет игроков"));
 				return;
 			}
 		} else { /* if global chat */
 			/* if player disable global chat */
 			if (APlayer.getPlayer(player).isMute()) {
-				player.sendMessage(Utils.colorize("&cУ вас отключен глобальный чат, используйте &6/cs mute"));
+				player.sendMessage(Other.color("&cУ вас отключен глобальный чат, используйте &6/cs mute"));
 				return;
 			}
 
@@ -43,11 +43,11 @@ public class Chat implements Listener {
 		for (Player recipient : e.getRecipients()) {
 
 			APlayer arecipient = APlayer.getPlayer(recipient);
-			String style = Utils.colorize(arecipient.getStyle());
+			String style = Other.color(arecipient.getStyle());
 			style = style.replace("%PLAYER%", player.getName());
 			style = style.replace("%MESSAGE%", message);
 
-			String prefix = isGlobal ? Utils.colorize(arecipient.getGlobalPrefix()) : Utils.colorize(arecipient.getLocalPrefix());
+			String prefix = isGlobal ? Other.color(arecipient.getGlobalPrefix()) : Other.color(arecipient.getLocalPrefix());
 			recipient.sendMessage(prefix + style);
 		}
 		Bukkit.getConsoleSender().sendMessage((isGlobal ? "[G] " : "[L] ") + player.getName() + ": " + message);

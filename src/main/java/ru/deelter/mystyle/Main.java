@@ -8,12 +8,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 import ru.deelter.mystyle.chat.Chat;
 import ru.deelter.mystyle.chat.JoinAndQuit;
 import ru.deelter.mystyle.commands.ChatSettings;
-import ru.deelter.mystyle.player.APlayer;
+import ru.deelter.mystyle.database.Database;
 import ru.deelter.mystyle.player.PlayerIdentification;
 
 public class Main extends JavaPlugin implements Listener {
 	
 	public static JavaPlugin instance;
+
+	public static JavaPlugin getInstance() {
+		return instance;
+	}
 
 	public void onEnable() {
 		instance = this;
@@ -23,6 +27,7 @@ public class Main extends JavaPlugin implements Listener {
 		}
 
 		Config.reloadConfig();
+		Database.setupDatabase(this);
 
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(new PlayerIdentification(), this);
@@ -34,15 +39,6 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	public void onDisable() {
-		APlayer.getPlayers().keySet().forEach(uuid -> {
-			APlayer aplayer = APlayer.getPlayer(uuid);
-			aplayer.save();
-
-			aplayer.unregister();
-		});
-	}
-	
-	public static JavaPlugin getInstance() {
-		return instance;
+		//TODO
 	}
 }

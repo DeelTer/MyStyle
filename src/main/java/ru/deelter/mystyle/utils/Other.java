@@ -2,9 +2,9 @@ package ru.deelter.mystyle.utils;
 
 import org.bukkit.ChatColor;
 
-public class Utils {
+public class Other {
 
-	public static String colorize(String string) {
+	public static String color(String string) {
 		return string == null ? "" : ChatColor.translateAlternateColorCodes('&', string);
 	}
 }

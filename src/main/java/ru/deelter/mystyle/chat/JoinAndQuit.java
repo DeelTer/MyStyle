@@ -8,7 +8,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import ru.deelter.mystyle.player.APlayer;
-import ru.deelter.mystyle.utils.Utils;
+import ru.deelter.mystyle.utils.Other;
 
 public class JoinAndQuit implements Listener {
 
@@ -26,7 +26,7 @@ public class JoinAndQuit implements Listener {
 
 	private void sendNotify(Player leaver, boolean isJoin) {
 
-		String message = Utils.colorize("&e" + leaver.getName() + (isJoin ? " присоединился к игре" : " вышел из игры"));
+		String message = Other.color("&e" + leaver.getName() + (isJoin ? " присоединился к игре" : " вышел из игры"));
 		for (Player online : Bukkit.getOnlinePlayers()) {
 
 			APlayer ap = APlayer.getPlayer(online);

@@ -38,7 +38,7 @@ public class ChatSettings implements CommandExecutor, Listener {
 					}
 
 					boolean setVisible = args[1].equalsIgnoreCase("false");
-					sender.sendMessage(Other.color(setVisible ? "&8[&e#&8]&f Вы выключили глобальный чат" : "&8[&a#&8] &fВы включили глобальный чат"));
+					sender.sendMessage(Other.color(setVisible ? "&8[&c#&8]&f Вы выключили глобальный чат" : "&8[&6#&8] &fВы включили глобальный чат"));
 					aplayer.setMute(setVisible);
 					return true;
 				}
@@ -51,7 +51,7 @@ public class ChatSettings implements CommandExecutor, Listener {
 					}
 
 					boolean setVisible = args[1].equalsIgnoreCase("false");
-					sender.sendMessage(Other.color(setVisible ? "&8[&e#&8] &fВы включили оповещения о входе/выходе игроков" : "&8[&c#&8] &fВы выключили оповещения о входе/выходе игроков"));
+					sender.sendMessage(Other.color(setVisible ? "&8[&c#&8] &fВы выключили оповещения о входе/выходе игроков" : "&8[&6#&8] &fВы включили оповещения о входе/выходе игроков"));
 					aplayer.setNotify(setVisible);
 					return true;
 				}
@@ -81,8 +81,7 @@ public class ChatSettings implements CommandExecutor, Listener {
 				/* Set your own style */
 				else if (args[0].equalsIgnoreCase("style")) {
 
-					String style = aplayer.getStyle();
-					String newStyle = Config.STYLE;
+					String style = aplayer.getStyle(), newStyle = Config.STYLE;
 					if (args.length > 1) {
 
 						newStyle = String.join(" ", args).substring(args[0].length() + 1);

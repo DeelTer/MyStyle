@@ -32,11 +32,6 @@ public class ChatSettings implements CommandExecutor, Listener {
 
 				/* Mute your global chat */
 				else if (args[0].equalsIgnoreCase("mute")) {
-					if (!sender.hasPermission(Config.MUTE_PERM)) {
-						sender.sendMessage(Config.MSG_NO_PERM);
-						return true;
-					}
-
 					if (args[1] == null) {
 						sendHelpMessage((Player) sender);
 						return true;
@@ -50,11 +45,6 @@ public class ChatSettings implements CommandExecutor, Listener {
 				
 				/* Mute notifications of join and quit */
 				else if (args[0].equalsIgnoreCase("notify")) {
-					if (!sender.hasPermission(Config.NOTIFY_PERM)) {
-						sender.sendMessage(Config.MSG_NO_PERM);
-						return true;
-					}
-
 					if (args[1] == null) {
 						sendHelpMessage((Player) sender);
 						return true;
@@ -68,11 +58,6 @@ public class ChatSettings implements CommandExecutor, Listener {
 
 				/* Set your own prefixes */
 				else if (args[0].equalsIgnoreCase("prefix")) {
-					if (!sender.hasPermission(Config.PREFIX_PERM)) {
-						sender.sendMessage(Config.MSG_NO_PERM);
-						return true;
-					}
-
 					if (args.length < 2) {
 						sendHelpMessage((Player) sender);
 						return true;
@@ -95,11 +80,7 @@ public class ChatSettings implements CommandExecutor, Listener {
 
 				/* Set your own style */
 				else if (args[0].equalsIgnoreCase("style")) {
-					if (!sender.hasPermission(Config.STYLE_PERM)) {
-						sender.sendMessage(Config.MSG_NO_PERM);
-						return true;
-					}
-					
+
 					String style = aplayer.getStyle();
 					String newStyle = Config.STYLE;
 					if (args.length > 1) {

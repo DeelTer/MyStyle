@@ -1,13 +1,22 @@
 name: MyStyle
 version: ${project.version}
 main: ru.deelter.mystyle.Main
-api-version: 1.15
+api-version: 1.16
+
 prefix: MyStyle
 authors: [DeelTer]
 description: Flexible chat settings for each player
-website: vk.com/deelter
+website: https://vk.com/deelter
+
 commands:
   chatsettings:
     aliases: ["cs", "mystyle"]
-    description: set your chat
-    usage: /<command>
+    description: main command
+    permission: chatsettings.command
+    permission-message: You do not have permission!
+    usage: /<command> [style|prefix|mute|notify|help] [global|local]
+
+permissions:
+  chatsettings.command:
+    description: Allows main MyStyle command
+    default: true

@@ -7,10 +7,17 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import ru.deelter.mystyle.Config;
+import ru.deelter.mystyle.Main;
 import ru.deelter.mystyle.player.APlayer;
 import ru.deelter.mystyle.utils.Other;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 public class Chat implements Listener {
+
+	private List<UUID> cooldown = new ArrayList<>();
 
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e) {
@@ -18,19 +25,21 @@ public class Chat implements Listener {
 
 		Player player = e.getPlayer();
 		String message = e.getMessage();
-		boolean isGlobal = false;
 
+		boolean isGlobal = false;
 		if (!message.startsWith("!")) { /* if local chat */
 
 			e.getRecipients().removeIf(other -> isFar(player, other));
 			if (e.getRecipients().size() == 1) {
-				player.sendMessage(Other.color("&cВ вашем радиусе нет игроков"));
+				player.sendMessage(Config.MSG_NO_PLAYERS);
 				return;
 			}
-		} else { /* if global chat */
+		}
+		/* if global chat */
+		else {
 			/* if player disable global chat */
 			if (APlayer.getPlayer(player).isMute()) {
-				player.sendMessage(Other.color("&cУ вас отключен глобальный чат, используйте &6/mystyle"));
+				player.sendMessage(Config.MSG_GLOBAL_DISABLE);
 				return;
 			}
 
@@ -39,6 +48,13 @@ public class Chat implements Listener {
 			e.getRecipients().removeIf(other -> APlayer.getPlayer(other).isMute());
 		}
 
+		if (Config.ENABLE_CHAT_COOLDOWN) {
+			if (cooldown.contains(player.getUniqueId())) {
+				player.sendMessage(Config.MSG_COOLDOWN);
+				return;
+			}
+			startCooldown(player.getUniqueId(), Config.CHAT_COOLDOWN);
+		}
 		/* Sending message */
 		for (Player recipient : e.getRecipients()) {
 
@@ -59,5 +75,10 @@ public class Chat implements Listener {
 
 		double distance = player1.getLocation().distance(player2.getLocation());
 		return distance > Config.RADIUS;
+	}
+
+	private void startCooldown(UUID uuid, int seconds) {
+		cooldown.add(uuid);
+		Bukkit.getScheduler().runTaskLaterAsynchronously(Main.getInstance(), () -> cooldown.remove(uuid), seconds * 20L);
 	}
 }

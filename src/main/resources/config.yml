@@ -21,21 +21,28 @@ default-values:
 
 settings:
   enable-private: true
+  chat-cooldown:
+    enable: true
+    seconds: 1
 
 messages:
   no-perm: '&6You have no permissions to do this'
   reload: '&aConfiguration reloaded!'
+  chat:
+    no-players: "&8[&c#&8]&c В вашем радиусе нет игроков"
+    global-disable: "&8[&c#&8]&c У вас отключен глобальный чат, используйте &6/mystyle"
+    cooldown: "&8[&c#&8]&c Вы не можете писать в чат так часто!"
 
-permissions:
-  mute: 'mychat.mute' #Mute your global chat (/cs mute)
-  notify: 'mychat.notify' #Off notifications about join/quit players (/cs notify)
-  style: 'mychat.style' #Set your own style of chat (/cs style)
-  prefix: 'mychat.prefix' #Set your own prefixes (/cs prefix)
-
-help:
-- '&a/cs style <style> &f- Изменить свой стиль чата. Переменные: (%PLAYER%; %MESSAGE%)'
-- '&a/cs prefix <local/global> <префикс> &f- Установить префикс глобального/локального чата!'
-- '&a/cs notify &f- Вкл/выкл уведомления о входе и выходе игроков'
-- '&a/cs mute &f- Вкл/выкл глобальный чат (работает только для игрока)'
+#permissions: ##DEPRECATED: soon will remove this
+#  mute: 'mychat.mute' #Mute your global chat (/cs mute)
+#  notify: 'mychat.notify' #Off notifications about join/quit players (/cs notify)
+#  style: 'mychat.style' #Set your own style of chat (/cs style)
+#  prefix: 'mychat.prefix' #Set your own prefixes (/cs prefix)
+#
+#help: ##DEPRECATED: soon will remove this
+#- '&a/cs style <style> &f- Изменить свой стиль чата. Переменные: (%PLAYER%; %MESSAGE%)'
+#- '&a/cs prefix <local/global> <префикс> &f- Установить префикс глобального/локального чата!'
+#- '&a/cs notify &f- Вкл/выкл уведомления о входе и выходе игроков'
+#- '&a/cs mute &f- Вкл/выкл глобальный чат (работает только для игрока)'
 
 disable-logs: false

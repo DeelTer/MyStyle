@@ -3,10 +3,9 @@ package ru.deelter.mystyle;
 import java.util.List;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import ru.deelter.mystyle.utils.Other;
 
 public class Config {
-	
-	public static List<String> HELP_PAGE;
 
 	/* Settings */
 	public static String STYLE;
@@ -18,9 +17,18 @@ public class Config {
 	public static boolean MUTE;
 	public static boolean NOTIFY;
 
+	/* Settings */
+	public static boolean ENABLE_PRIVATE;
+	public static boolean ENABLE_CHAT_COOLDOWN;
+	public static int CHAT_COOLDOWN;
+
 	/* Messages */
 	public static String MSG_NO_PERM;
 	public static String MSG_RELOAD;
+
+	public static String MSG_NO_PLAYERS;
+	public static String MSG_GLOBAL_DISABLE;
+	public static String MSG_COOLDOWN;
 
 	/* Permissions */
 	public static String MUTE_PERM;
@@ -30,28 +38,34 @@ public class Config {
 	
 	public static void reloadConfig() {
 		Main.getInstance().reloadConfig();
-		
-		HELP_PAGE = config().getStringList("help");
+		FileConfiguration config = Main.getInstance().getConfig();
 
-		STYLE = config().getString("default-values.style");
-		GLOBAL_PREFIX = config().getString("default-values.global-prefix");
-		LOCAL_PREFIX = config().getString("default-values.local-prefix");
+		STYLE = config.getString("default-values.style");
+		GLOBAL_PREFIX = config.getString("default-values.global-prefix");
+		LOCAL_PREFIX = config.getString("default-values.local-prefix");
 
-		RADIUS = config().getInt("default-values.radius");
-		MUTE = config().getBoolean("default-values.mute");
-		NOTIFY = config().getBoolean("default-values.notify");
+		RADIUS = config.getInt("default-values.radius");
+		MUTE = config.getBoolean("default-values.mute");
+		NOTIFY = config.getBoolean("default-values.notify");
 
-		MSG_NO_PERM = config().getString("messages.no-perm");
-		MSG_RELOAD = config().getString("messages.reload");
+		/* Settings */
+		ENABLE_PRIVATE = config.getBoolean("settings.enable-private");
+		ENABLE_CHAT_COOLDOWN = config.getBoolean("settings.chat-cooldown.enable");
+
+		CHAT_COOLDOWN = config.getInt("settings.chat-cooldown.seconds");
+
+		/* Other */
+		MSG_NO_PERM = config.getString("messages.no-perm");
+		MSG_RELOAD = config.getString("messages.reload");
+
+		MSG_NO_PLAYERS = Other.color(config.getString("messages.no-players"));
+		MSG_GLOBAL_DISABLE = Other.color(config.getString("messages.global-disable"));
+		MSG_COOLDOWN = Other.color(config.getString("messages.cooldown"));
 
 		/* Permissions */
-		MUTE_PERM = config().getString("permissions.mute");
-		STYLE_PERM = config().getString("permissions.style");
-		NOTIFY_PERM = config().getString("permissions.notify");
-		PREFIX_PERM = config().getString("permissions.prefix");
-	}
-
-	private static FileConfiguration config() {
-		return Main.getInstance().getConfig();
+		MUTE_PERM = config.getString("permissions.mute");
+		STYLE_PERM = config.getString("permissions.style");
+		NOTIFY_PERM = config.getString("permissions.notify");
+		PREFIX_PERM = config.getString("permissions.prefix");
 	}
 }

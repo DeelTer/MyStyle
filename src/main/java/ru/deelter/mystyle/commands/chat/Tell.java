@@ -33,9 +33,12 @@ public class Tell implements CommandExecutor {
         }
 
         APlayer aTarget = APlayer.getPlayer(target);
-        if (!aTarget.getIgnoreList().contains(target.getUniqueId().toString())) {
+        if (aTarget.getIgnoreList().contains(target.getUniqueId().toString())) {
+            player.sendMessage(Other.color("&8[&c#&8] &fДанный игрок игнорирует вас"));
+            return true;
+        }
 
-            TextComponent chat = new TextComponent("&6[&f" + player.getName() + "&6]&f " + msg);
+            TextComponent chat = new TextComponent(Other.color("&6[&f" + player.getName() + "&6]&f " + msg));
             chat.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + label + " " + player.getName() + " "));
             target.sendMessage(chat);
 
@@ -49,9 +52,5 @@ public class Tell implements CommandExecutor {
             /* Log */
             Other.log(message);
             return true;
-        }
-
-        player.sendMessage(Other.color("&8[&c#&8] &fДанный игрок игнорирует вас"));
-        return true;
     }
 }

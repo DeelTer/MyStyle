@@ -83,9 +83,9 @@ public class APlayer {
 		return notify;
 	}
 
-	public void addIgnore(UUID uuid) {
-		if (!ignore.contains(uuid.toString()))
-			ignore.add(uuid.toString());
+	public void setIgnore(UUID uuid, boolean add) {
+		if (add) ignore.add(uuid.toString());
+		else ignore.remove(uuid.toString());
 	}
 
 	public List<String> getIgnoreList() {

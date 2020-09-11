@@ -30,11 +30,12 @@ public class Ignore implements CommandExecutor {
 
         APlayer aPlayer = APlayer.getPlayer(player);
         if (aPlayer.getIgnoreList().contains(target.getUniqueId().toString())) {
-            player.sendMessage(Other.color("&8[&c#&8] &fВы уже игнорируете этого игрока"));
+            player.sendMessage(Other.color("&8[&6#&8] &fВы больше не игнорируете " + args[0]));
+            aPlayer.setIgnore(target.getUniqueId(), false);
             return true;
         }
 
-        aPlayer.addIgnore(target.getUniqueId());
+        aPlayer.setIgnore(target.getUniqueId(), true);
         player.sendMessage(Other.color("&8[&6#&8] &fТеперь вы игнорируете " + args[0]));
         return true;
     }

@@ -25,6 +25,11 @@ settings:
     enable: false
     seconds: 1
 
+  warning-words:
+    - "продам порох"
+    - "куплю порох"
+    - "ты пидарас"
+
 messages:
   no-perm: '&6You have no permissions to do this'
   reload: '&aConfiguration reloaded!'

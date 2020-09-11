@@ -8,9 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class APlayer {
 
@@ -23,6 +21,7 @@ public class APlayer {
 	private boolean mute = Config.MUTE;
 	private boolean notify = Config.NOTIFY;
 
+	private static List<String> ignore = new ArrayList<>();
 	private static final Map<UUID, APlayer> players = new HashMap<>();
 
 	public APlayer(UUID uuid) {
@@ -84,6 +83,15 @@ public class APlayer {
 		return notify;
 	}
 
+	public void addIgnore(UUID uuid) {
+		if (!ignore.contains(uuid.toString()))
+			ignore.add(uuid.toString());
+	}
+
+	public List<String> getIgnoreList() {
+		return ignore;
+	}
+
 	public static Map<UUID, APlayer> getPlayers() {
 		return players;
 	}
@@ -117,6 +125,11 @@ public class APlayer {
 				localPrefix = rs.getString("LOCAL_PREFIX");
 				mute = rs.getBoolean("MUTE");
 				notify = rs.getBoolean("NOTIFY");
+
+				String[] ignoredPlayers = rs.getString("IGNORE").split(",");
+				for (String ignoredPlayer : ignoredPlayers) {
+					ignore.add(ignoredPlayer);
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -164,12 +177,15 @@ public class APlayer {
 			String sql = "REPLACE INTO Players (UUID,IGNORE,STYLE,GLOBAL_PREFIX,LOCAL_PREFIX,MUTE,NOTIFY) VALUES(?,?,?,?,?,?,?);";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, uuid.toString());
-			ps.setString(2, "");
 			ps.setString(3, style);
 			ps.setString(4, globalPrefix);
 			ps.setString(5, localPrefix);
 			ps.setBoolean(6, mute);
 			ps.setBoolean(7, notify);
+
+			StringBuilder ignoredPlayers = new StringBuilder();
+			ignore.forEach(uuid -> ignoredPlayers.append(uuid).append(","));
+			ps.setString(2, ignoredPlayers.substring(ignoredPlayers.length() - 1));
 
 			ps.executeUpdate();
 			ps.close();

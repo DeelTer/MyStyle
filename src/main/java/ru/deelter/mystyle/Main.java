@@ -8,8 +8,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 import ru.deelter.mystyle.chat.Chat;
 import ru.deelter.mystyle.chat.JoinAndQuit;
 import ru.deelter.mystyle.commands.ChatSettings;
+import ru.deelter.mystyle.commands.chat.Ignore;
+import ru.deelter.mystyle.commands.chat.Tell;
 import ru.deelter.mystyle.database.Database;
+import ru.deelter.mystyle.player.APlayer;
 import ru.deelter.mystyle.player.PlayerIdentification;
+import ru.deelter.mystyle.utils.Other;
 
 public class Main extends JavaPlugin implements Listener {
 	
@@ -21,24 +25,40 @@ public class Main extends JavaPlugin implements Listener {
 
 	public void onEnable() {
 		instance = this;
-		if (!(new File(instance.getDataFolder().getPath() + "/config.yml").exists())) {
-			getLogger().info("Конфига не существует, загружаем новый..");
+
+		File config = new File(instance.getDataFolder().getPath() + "/config.yml");
+		if (!config.exists()) {
+			Other.log("&cКонфиг не найден. Загружаем новый");
 			saveDefaultConfig();
 		}
 
 		Config.reloadConfig();
 		Database.setupDatabase(this);
 
+		/* Listeners */
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(new PlayerIdentification(), this);
 		pm.registerEvents(new ChatSettings(), this);
 		pm.registerEvents(new JoinAndQuit(), this);
 		pm.registerEvents(new Chat(), this);
-		
+
+		/* Commands */
 		getCommand("chatsettings").setExecutor(new ChatSettings());
+		if (Config.ENABLE_PRIVATE) {
+			Other.log("&aАктивируем классы для приватных сообщений");
+			getCommand("tell").setExecutor(new Tell());
+			getCommand("ignore").setExecutor(new Ignore());
+		}
+		Other.log("&aПлагин включен");
 	}
 
 	public void onDisable() {
-		//TODO
+		int count = 0;
+		for (APlayer aPlayer : APlayer.getPlayers().values()) {
+			aPlayer.save();
+			aPlayer.unregister();
+			count++;
+		}
+		Other.log("&aСохранено " + count + " игроков");
 	}
 }

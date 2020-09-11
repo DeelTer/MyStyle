@@ -12,11 +12,31 @@ commands:
   chatsettings:
     aliases: ["cs", "mystyle"]
     description: main command
+    usage: /<command> [style|prefix|mute|notify|help] [global|local]
     permission: chatsettings.command
     permission-message: You do not have permission!
-    usage: /<command> [style|prefix|mute|notify|help] [global|local]
+  tell:
+    aliases: ["msg", "message", "w", "m"]
+    description: private chat command
+    usage: /<command> <player> <message>
+    permission: chatsettings.tell
+    permission-message: You do not have permission!
+  ignore:
+    aliases: ["ign", "i"]
+    description: ignore fool player <3
+    usage: /<command> <player>
+    permission: chatsettings.ignore
+    permission-message: You do not have permission!
 
 permissions:
   chatsettings.command:
     description: Allows main MyStyle command
+    default: true
+
+  chatsettings.tell:
+    description: Allows private chatting
+    default: true
+
+  chatsettings.ignore:
+    description: Allows ignore players
     default: true

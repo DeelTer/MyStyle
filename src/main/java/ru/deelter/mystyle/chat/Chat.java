@@ -27,7 +27,7 @@ public class Chat implements Listener {
 		String message = e.getMessage();
 
 		boolean isGlobal = false;
-		if (!message.startsWith("!")) { /* if local chat */
+		if (!message.startsWith("!")) {
 
 			e.getRecipients().removeIf(other -> isFar(player, other));
 			if (e.getRecipients().size() == 1) {
@@ -35,7 +35,7 @@ public class Chat implements Listener {
 				return;
 			}
 		}
-		/* if global chat */
+		/* If global chat */
 		else {
 			/* if player disable global chat */
 			if (APlayer.getPlayer(player).isMute()) {
@@ -48,6 +48,7 @@ public class Chat implements Listener {
 			e.getRecipients().removeIf(other -> APlayer.getPlayer(other).isMute());
 		}
 
+		/* Chat cooldown */
 		if (Config.ENABLE_CHAT_COOLDOWN) {
 			if (cooldown.contains(player.getUniqueId())) {
 				player.sendMessage(Config.MSG_COOLDOWN);
@@ -55,6 +56,7 @@ public class Chat implements Listener {
 			}
 			startCooldown(player.getUniqueId(), Config.CHAT_COOLDOWN);
 		}
+
 		/* Sending message */
 		for (Player recipient : e.getRecipients()) {
 
@@ -66,7 +68,7 @@ public class Chat implements Listener {
 			String prefix = isGlobal ? Other.color(aRecipient.getGlobalPrefix()) : Other.color(aRecipient.getLocalPrefix());
 			recipient.sendMessage(prefix + style);
 		}
-		Bukkit.getConsoleSender().sendMessage((isGlobal ? "[G] " : "[L] ") + player.getName() + ": " + message);
+		Other.log((isGlobal ? "[G] " : "[L] ") + player.getName() + ": " + message, false);
 	}
 
 	private boolean isFar(Player player1, Player player2) {

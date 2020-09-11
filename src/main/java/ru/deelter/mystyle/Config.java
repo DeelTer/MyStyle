@@ -1,7 +1,5 @@
 package ru.deelter.mystyle;
 
-import java.util.List;
-
 import org.bukkit.configuration.file.FileConfiguration;
 import ru.deelter.mystyle.utils.Other;
 
@@ -21,6 +19,8 @@ public class Config {
 	public static boolean ENABLE_PRIVATE;
 	public static boolean ENABLE_CHAT_COOLDOWN;
 	public static int CHAT_COOLDOWN;
+
+	public static boolean DISABLE_LOGS;
 
 	/* Messages */
 	public static String MSG_NO_PERM;
@@ -51,16 +51,17 @@ public class Config {
 		/* Settings */
 		ENABLE_PRIVATE = config.getBoolean("settings.enable-private");
 		ENABLE_CHAT_COOLDOWN = config.getBoolean("settings.chat-cooldown.enable");
-
 		CHAT_COOLDOWN = config.getInt("settings.chat-cooldown.seconds");
+
+		DISABLE_LOGS = config.getBoolean("disable-logs");
 
 		/* Other */
 		MSG_NO_PERM = config.getString("messages.no-perm");
 		MSG_RELOAD = config.getString("messages.reload");
 
-		MSG_NO_PLAYERS = Other.color(config.getString("messages.no-players"));
-		MSG_GLOBAL_DISABLE = Other.color(config.getString("messages.global-disable"));
-		MSG_COOLDOWN = Other.color(config.getString("messages.cooldown"));
+		MSG_NO_PLAYERS = Other.color(config.getString("messages.chat.no-players"));
+		MSG_GLOBAL_DISABLE = Other.color(config.getString("messages.chat.global-disable"));
+		MSG_COOLDOWN = Other.color(config.getString("messages.chat.cooldown"));
 
 		/* Permissions */
 		MUTE_PERM = config.getString("permissions.mute");

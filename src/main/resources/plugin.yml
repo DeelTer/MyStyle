@@ -15,12 +15,14 @@ commands:
     usage: /<command> [style|prefix|mute|notify|help] [global|local]
     permission: chatsettings.command
     permission-message: You do not have permission!
+
   tell:
     aliases: ["msg", "message", "w", "m"]
     description: private chat command
     usage: /<command> <player> <message>
     permission: chatsettings.tell
     permission-message: You do not have permission!
+
   ignore:
     aliases: ["ign", "i"]
     description: ignore fool player <3

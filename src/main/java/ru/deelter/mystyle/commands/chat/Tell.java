@@ -33,7 +33,7 @@ public class Tell implements CommandExecutor {
         }
 
         APlayer aTarget = APlayer.getPlayer(target);
-        if (aTarget.getIgnoreList().contains(target.getUniqueId().toString())) {
+        if (!aTarget.getIgnoreList().contains(target.getUniqueId().toString())) {
 
             TextComponent chat = new TextComponent("&6[&f" + player.getName() + "&6]&f " + msg);
             chat.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + label + " " + player.getName() + " "));

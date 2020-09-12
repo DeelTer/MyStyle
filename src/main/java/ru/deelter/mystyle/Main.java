@@ -53,12 +53,7 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	public void onDisable() {
-		int count = 0;
-		for (APlayer aPlayer : APlayer.getPlayers().values()) {
-			aPlayer.save();
-			aPlayer.unregister();
-			count++;
-		}
+		int count = APlayer.getPlayers().size();
 		Other.log("&aСохранено " + count + " игроков");
 	}
 }

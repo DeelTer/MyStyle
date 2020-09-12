@@ -177,16 +177,12 @@ public class APlayer {
 			String sql = "REPLACE INTO Players (UUID,IGNORE,STYLE,GLOBAL_PREFIX,LOCAL_PREFIX,MUTE,NOTIFY) VALUES(?,?,?,?,?,?,?);";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, uuid.toString());
+            ps.setString(2, String.join(",", ignore));
 			ps.setString(3, style);
 			ps.setString(4, globalPrefix);
 			ps.setString(5, localPrefix);
 			ps.setBoolean(6, mute);
 			ps.setBoolean(7, notify);
-
-			StringBuilder ignoredPlayers = new StringBuilder();
-			ignore.forEach(uuid -> ignoredPlayers.append(uuid).append(","));
-			ps.setString(2, ignoredPlayers.substring(ignoredPlayers.length() - 1));
-
 			ps.executeUpdate();
 			ps.close();
 		} catch (SQLException e) {

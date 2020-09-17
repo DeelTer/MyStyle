@@ -24,11 +24,9 @@ settings:
     commands:
       private: true #Private commands: /msg /tell /ignore
       roleplay: true #Roleplay commands: /try /me, /do, /roll
-
     chat-cooldown:
       enable: false
       seconds: 1
-
   logs:
     console: true #Logs requests and other in console
     file: true #Logs requests in MyRequests/logs/ID.txt
@@ -46,7 +44,6 @@ messages:
     no-players: "&8[&c#&8]&c В вашем радиусе нет игроков"
     global-disable: "&8[&c#&8]&c У вас отключен глобальный чат"
     cooldown: "&8[&c#&8]&c Вы не можете писать в чат так часто!"
-
     ignore-you: "&8[&c#&8] &fДанный игрок игнорирует вас"
     player-ignore-add: "&8[&6#&8] &fТеперь вы игнорируете %PLAYER%"
     player-ignore-remove: "&8[&6#&8] &fВы больше не игнорируете %PLAYER%"

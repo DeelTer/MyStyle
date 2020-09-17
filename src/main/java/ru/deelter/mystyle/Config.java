@@ -54,9 +54,9 @@ public class Config {
 		GLOBAL_PREFIX = def.getString("global-prefix");
 		LOCAL_PREFIX = def.getString("local-prefix");
 
-		RADIUS = config.getInt("radius");
-		MUTE = config.getBoolean("mute");
-		NOTIFY = config.getBoolean("notify");
+		RADIUS = def.getInt("radius");
+		MUTE = def.getBoolean("mute");
+		NOTIFY = def.getBoolean("notify");
 
 		/* Settings */
 		ConfigurationSection settings = config.getConfigurationSection("settings");
@@ -71,7 +71,7 @@ public class Config {
 		FILE_LOGS = settings.getBoolean("logs.file");
 
 		/* Messages */
-		ConfigurationSection messages = config.getConfigurationSection("settings");
+		ConfigurationSection messages = config.getConfigurationSection("messages");
 		MSG_NO_PERM = messages.getString("no-perm");
 		MSG_RELOAD = messages.getString("reload");
 

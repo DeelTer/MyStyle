@@ -50,10 +50,10 @@ messages:
 
 #Commands permissions
 permissions:
-  mute: 'mychat.mute' #Mute your global chat (/cs mute)
-  notify: 'mychat.notify' #Off notifications about join/quit players (/cs notify)
-  style: 'mychat.style' #Set your own style of chat (/cs style)
-  prefix: 'mychat.prefix' #Set your own prefixes (/cs prefix)
+  mute: 'chatsettings.mute' #Mute your global chat (/cs mute)
+  notify: 'chatsettings.notify' #Off notifications about join/quit players (/cs notify)
+  style: 'chatsettings.style' #Set your own style of chat (/cs style)
+  prefix: 'chatsettings.prefix' #Set your own prefixes (/cs prefix)
 
 ##DEPRECATED: soon will remove this
 #

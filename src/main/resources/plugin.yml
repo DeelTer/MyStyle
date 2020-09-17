@@ -57,6 +57,18 @@ permissions:
     description: Allows main MyStyle command
     default: true
 
+  chatsettings.mute:
+    default: true
+
+  chatsettings.notify:
+    default: true
+
+  chatsettings.style:
+    default: true
+
+  chatsettings.prefix:
+    default: true
+
   chatsettings.tell:
     description: Allows private chatting
     default: true

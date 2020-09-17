@@ -30,6 +30,28 @@ commands:
     permission: chatsettings.ignore
     permission-message: You do not have permission!
 
+  #RolePlay commands here
+  roll:
+    aliases: [ "dice" ]
+    description: throw dice
+    usage: /<command>
+    permission: chatsettings.roleplay.roll
+    permission-message: You do not have permission!
+
+  try:
+    aliases: [ "try" ]
+    description: throw dice
+    usage: /<command>
+    permission: chatsettings.roleplay.try
+    permission-message: You do not have permission!
+
+  me:
+    aliases: [ "eme" ]
+    description: throw dice
+    usage: /<command>
+    permission: chatsettings.roleplay.me
+    permission-message: You do not have permission!
+
 permissions:
   chatsettings.command:
     description: Allows main MyStyle command
@@ -41,4 +63,17 @@ permissions:
 
   chatsettings.ignore:
     description: Allows ignore players
+    default: true
+
+  #Roleplay permissions
+  chatsettings.roleplay.roll:
+    description: Allows use command /roll
+    default: true
+
+  chatsettings.roleplay.try:
+    description: Allows use command /try
+    default: true
+
+  chatsettings.roleplay.me:
+    description: Allows use command /me
     default: true

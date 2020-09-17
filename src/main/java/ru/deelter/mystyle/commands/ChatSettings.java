@@ -4,21 +4,23 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.chat.hover.content.Text;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
+
 import ru.deelter.mystyle.Config;
 import ru.deelter.mystyle.player.APlayer;
 import ru.deelter.mystyle.utils.Other;
 
-public class ChatSettings implements CommandExecutor, Listener {
+public class ChatSettings implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) { // /CS ARGS
 		if (sender instanceof Player) {
 			if (args.length > 0) {
+
 				APlayer aplayer = APlayer.getPlayer((Player) sender);
 				if (args[0].equalsIgnoreCase("reload")) { // reload command
 					if (!sender.isOp()) {
@@ -37,6 +39,11 @@ public class ChatSettings implements CommandExecutor, Listener {
 						return true;
 					}
 
+					if (!Config.MUTE_PERM.equals("none") && !sender.hasPermission(Config.MUTE_PERM)) {
+						sender.sendMessage(Config.MSG_NO_PERM);
+						return true;
+					}
+
 					boolean setVisible = args[1].equalsIgnoreCase("false");
 					sender.sendMessage(Other.color(setVisible ? "&8[&c#&8]&f Вы выключили глобальный чат" : "&8[&6#&8] &fВы включили глобальный чат"));
 					aplayer.setMute(setVisible);
@@ -50,6 +57,11 @@ public class ChatSettings implements CommandExecutor, Listener {
 						return true;
 					}
 
+					if (!Config.NOTIFY_PERM.equals("none") && !sender.hasPermission(Config.NOTIFY_PERM)) {
+						sender.sendMessage(Config.MSG_NO_PERM);
+						return true;
+					}
+
 					boolean setVisible = args[1].equalsIgnoreCase("false");
 					sender.sendMessage(Other.color(setVisible ? "&8[&c#&8] &fВы выключили оповещения о входе/выходе игроков" : "&8[&6#&8] &fВы включили оповещения о входе/выходе игроков"));
 					aplayer.setNotify(setVisible);
@@ -60,6 +72,11 @@ public class ChatSettings implements CommandExecutor, Listener {
 				else if (args[0].equalsIgnoreCase("prefix")) {
 					if (args.length < 2) {
 						sendHelpMessage((Player) sender);
+						return true;
+					}
+
+					if (!Config.PREFIX_PERM.equals("none") && !sender.hasPermission(Config.PREFIX_PERM)) {
+						sender.sendMessage(Config.MSG_NO_PERM);
 						return true;
 					}
 
@@ -80,6 +97,10 @@ public class ChatSettings implements CommandExecutor, Listener {
 
 				/* Set your own style */
 				else if (args[0].equalsIgnoreCase("style")) {
+					if (!Config.STYLE_PERM.equals("none") && !sender.hasPermission(Config.STYLE_PERM)) {
+						sender.sendMessage(Config.MSG_NO_PERM);
+						return true;
+					}
 
 					String style = aplayer.getStyle(), newStyle = Config.STYLE;
 					if (args.length > 1) {

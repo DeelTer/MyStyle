@@ -1,4 +1,4 @@
-package ru.deelter.mystyle.commands.chat;
+package ru.deelter.mystyle.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

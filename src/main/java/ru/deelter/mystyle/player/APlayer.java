@@ -21,7 +21,7 @@ public class APlayer {
 	private boolean mute = Config.MUTE;
 	private boolean notify = Config.NOTIFY;
 
-	private static List<String> ignore = new ArrayList<>();
+	private static final List<String> ignore = new ArrayList<>();
 	private static final Map<UUID, APlayer> players = new HashMap<>();
 
 	public APlayer(UUID uuid) {
@@ -106,12 +106,6 @@ public class APlayer {
 
 	/* Load player */
 	public void load() {
-		/* Default values */
-		style = Config.STYLE;
-		globalPrefix = Config.GLOBAL_PREFIX;
-		localPrefix = Config.LOCAL_PREFIX;
-		mute = Config.MUTE;
-		notify = Config.NOTIFY;
 
 		/* Database connect */
 		try (Connection con = Database.openConnection()) {
@@ -127,49 +121,12 @@ public class APlayer {
 				notify = rs.getBoolean("NOTIFY");
 
 				String[] ignoredPlayers = rs.getString("IGNORE").split(",");
-				for (String ignoredPlayer : ignoredPlayers) {
-					ignore.add(ignoredPlayer);
-				}
+				Collections.addAll(ignore, ignoredPlayers);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	/*
-	public void load() {
-		File folder = new File(Main.getInstance().getDataFolder() + File.separator + "players");
-		if (!folder.exists())
-			folder.mkdir();
-
-		File file = new File(folder, uuid + ".yml");
-		if (file.exists()) {
-
-			YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-			style = config.getString("style");
-			globalPrefix = config.getString("globalPrefix");
-			localPrefix = config.getString("localPrefix");
-			mute = config.getBoolean("mute");
-			notify = config.getBoolean("notify");
-
-		} else {
-			try {
-				file.createNewFile();
-
-				FileWriter writer = new FileWriter(file.getPath(), true);
-				BufferedWriter bufferWriter = new BufferedWriter(writer);
-				String text = "style: '" + style + "'\n" +
-						"globalPrefix: '" + globalPrefix + "'\n" +
-						"localPrefix: '" + localPrefix + "'\n" +
-						"mute: " + mute + "\n" +
-						"notify: " + notify;
-				bufferWriter.write(text);
-				bufferWriter.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	*/
 
 	/* Save player */
 	public void save() {
@@ -189,22 +146,4 @@ public class APlayer {
 			e.printStackTrace();
 		}
 	}
-	/*
-	public void save() {
-		File folder = new File(Main.getInstance().getDataFolder() + File.separator + "players");
-		File file = new File(folder, uuid + ".yml");
-		
-		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-		config.set("style", style);
-		config.set("globalPrefix", globalPrefix);
-		config.set("localPrefix", localPrefix);
-		config.set("mute", mute);
-		config.set("notify", notify);
-		try {
-			config.save(file);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	 */
 }

@@ -1,5 +1,6 @@
 package ru.deelter.mystyle;
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import ru.deelter.mystyle.utils.Other;
 
@@ -17,10 +18,13 @@ public class Config {
 
 	/* Settings */
 	public static boolean ENABLE_PRIVATE;
+	public static boolean ENABLE_ROLEPLAY;
+
 	public static boolean ENABLE_CHAT_COOLDOWN;
 	public static int CHAT_COOLDOWN;
 
-	public static boolean DISABLE_LOGS;
+	public static boolean CONSOLE_LOGS;
+	public static boolean FILE_LOGS;
 
 	/* Messages */
 	public static String MSG_NO_PERM;
@@ -44,37 +48,46 @@ public class Config {
 		Main.getInstance().reloadConfig();
 		FileConfiguration config = Main.getInstance().getConfig();
 
-		STYLE = config.getString("default-values.style");
-		GLOBAL_PREFIX = config.getString("default-values.global-prefix");
-		LOCAL_PREFIX = config.getString("default-values.local-prefix");
+		/* Default values */
+		ConfigurationSection def = config.getConfigurationSection("default-values");
+		STYLE = def.getString("style");
+		GLOBAL_PREFIX = def.getString("global-prefix");
+		LOCAL_PREFIX = def.getString("local-prefix");
 
-		RADIUS = config.getInt("default-values.radius");
-		MUTE = config.getBoolean("default-values.mute");
-		NOTIFY = config.getBoolean("default-values.notify");
+		RADIUS = config.getInt("radius");
+		MUTE = config.getBoolean("mute");
+		NOTIFY = config.getBoolean("notify");
 
 		/* Settings */
-		ENABLE_PRIVATE = config.getBoolean("settings.enable-private");
-		ENABLE_CHAT_COOLDOWN = config.getBoolean("settings.chat-cooldown.enable");
-		CHAT_COOLDOWN = config.getInt("settings.chat-cooldown.seconds");
+		ConfigurationSection settings = config.getConfigurationSection("settings");
+		ENABLE_PRIVATE = settings.getBoolean("chat.commands.private");
+		ENABLE_ROLEPLAY = settings.getBoolean("chat.commands.roleplay");
 
-		DISABLE_LOGS = config.getBoolean("disable-logs");
 
-		/* Other */
-		MSG_NO_PERM = config.getString("messages.no-perm");
-		MSG_RELOAD = config.getString("messages.reload");
+		ENABLE_CHAT_COOLDOWN = settings.getBoolean("chat.chat-cooldown.enable");
+		CHAT_COOLDOWN = settings.getInt("chat.chat-cooldown.seconds");
 
-		MSG_NO_PLAYERS = Other.color(config.getString("messages.chat.no-players"));
-		MSG_GLOBAL_DISABLE = Other.color(config.getString("messages.chat.global-disable"));
-		MSG_COOLDOWN = Other.color(config.getString("messages.chat.cooldown"));
+		CONSOLE_LOGS = settings.getBoolean("logs.console-logs");
+		FILE_LOGS = settings.getBoolean("logs.file-logs");
 
-		MSG_PLAYER_IGNORE_YOU = Other.color(config.getString("messages.chat.ignore-you"));
-		MSG_IGNORE_ADD = Other.color(config.getString("messages.chat.player-ignore-add"));
-		MSG_IGNORE_REMOVE = Other.color(config.getString("messages.chat.player-ignore-remove"));
+		/* Messages */
+		ConfigurationSection messages = config.getConfigurationSection("settings");
+		MSG_NO_PERM = messages.getString("no-perm");
+		MSG_RELOAD = messages.getString("reload");
+
+		MSG_NO_PLAYERS = Other.color(messages.getString("chat.no-players"));
+		MSG_GLOBAL_DISABLE = Other.color(messages.getString("chat.global-disable"));
+		MSG_COOLDOWN = Other.color(messages.getString("chat.cooldown"));
+
+		MSG_PLAYER_IGNORE_YOU = Other.color(messages.getString("chat.ignore-you"));
+		MSG_IGNORE_ADD = Other.color(messages.getString("chat.player-ignore-add"));
+		MSG_IGNORE_REMOVE = Other.color(messages.getString("chat.player-ignore-remove"));
 
 		/* Permissions */
-		MUTE_PERM = config.getString("permissions.mute");
-		STYLE_PERM = config.getString("permissions.style");
-		NOTIFY_PERM = config.getString("permissions.notify");
-		PREFIX_PERM = config.getString("permissions.prefix");
+		ConfigurationSection permissions = config.getConfigurationSection("settings");
+		MUTE_PERM = permissions.getString("mute");
+		STYLE_PERM = permissions.getString("style");
+		NOTIFY_PERM = permissions.getString("notify");
+		PREFIX_PERM = permissions.getString("prefix");
 	}
 }

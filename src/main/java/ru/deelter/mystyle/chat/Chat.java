@@ -1,25 +1,33 @@
 package ru.deelter.mystyle.chat;
 
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.chat.hover.content.Text;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import ru.deelter.mystyle.Config;
 import ru.deelter.mystyle.Main;
 import ru.deelter.mystyle.player.APlayer;
+import ru.deelter.mystyle.utils.LoggerManager;
 import ru.deelter.mystyle.utils.Other;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 public class Chat implements Listener {
 
-	private List<UUID> cooldown = new ArrayList<>();
+	private final List<UUID> cooldown = new ArrayList<>();
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onChat(AsyncPlayerChatEvent e) {
 		e.setCancelled(true);
 
@@ -34,9 +42,7 @@ public class Chat implements Listener {
 				player.sendMessage(Config.MSG_NO_PLAYERS);
 				return;
 			}
-		}
-		/* If global chat */
-		else {
+		} else {
 			/* if player disable global chat */
 			if (APlayer.getPlayer(player).isMute()) {
 				player.sendMessage(Config.MSG_GLOBAL_DISABLE);
@@ -66,9 +72,26 @@ public class Chat implements Listener {
 			style = style.replace("%MESSAGE%", message);
 
 			String prefix = isGlobal ? Other.color(aRecipient.getGlobalPrefix()) : Other.color(aRecipient.getLocalPrefix());
-			recipient.sendMessage(prefix + style);
+
+			/* ChatComponent form */
+			APlayer aplayer = APlayer.getPlayer(player);
+			TextComponent component = new TextComponent(prefix + style);
+
+			String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+			Text hoverText = new Text(Other.color("&6# &fОтправлено: &7" + date + "\n&6# &fСтиль: " + aplayer.getStyle() + "\n&7\n&7Кликните, чтобы написать\nсообщение этому игроку"));
+
+			HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, hoverText);
+			component.setHoverEvent(hoverEvent);
+
+			ClickEvent clickEvent = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/tell " + player.getName());
+			component.setClickEvent(clickEvent);
+
+			recipient.sendMessage(component);
+			//recipient.sendMessage(prefix + style);
 		}
-		Other.log((isGlobal ? "[G] " : "[L] ") + player.getName() + ": " + message, false);
+
+		/* Logger */
+		LoggerManager.log((isGlobal ? "[G] " : "[L] ") + player.getName() + ": " + message, false);
 	}
 
 	private boolean isFar(Player player1, Player player2) {

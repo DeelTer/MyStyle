@@ -1,4 +1,4 @@
-package ru.deelter.mystyle.commands.chat;
+package ru.deelter.mystyle.commands;
 
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -10,6 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ru.deelter.mystyle.Config;
 import ru.deelter.mystyle.player.APlayer;
+import ru.deelter.mystyle.utils.LoggerManager;
 import ru.deelter.mystyle.utils.Other;
 
 public class Tell implements CommandExecutor {
@@ -51,7 +52,7 @@ public class Tell implements CommandExecutor {
             player.playSound(player.getLocation(), Sound.ENTITY_ITEM_PICKUP, 1, 1);
 
             /* Log */
-            Other.log(message);
+            LoggerManager.log(message);
             return true;
     }
 }

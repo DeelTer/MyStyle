@@ -67,8 +67,8 @@ public class Config {
 		ENABLE_CHAT_COOLDOWN = settings.getBoolean("chat.chat-cooldown.enable");
 		CHAT_COOLDOWN = settings.getInt("chat.chat-cooldown.seconds");
 
-		CONSOLE_LOGS = settings.getBoolean("logs.console-logs");
-		FILE_LOGS = settings.getBoolean("logs.file-logs");
+		CONSOLE_LOGS = settings.getBoolean("logs.console");
+		FILE_LOGS = settings.getBoolean("logs.file");
 
 		/* Messages */
 		ConfigurationSection messages = config.getConfigurationSection("settings");

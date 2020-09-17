@@ -77,8 +77,7 @@ public class Chat implements Listener {
 			APlayer aplayer = APlayer.getPlayer(player);
 			TextComponent component = new TextComponent(prefix + style);
 
-			String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-			Text hoverText = new Text(Other.color("&6# &fОтправлено: &7" + date + "\n&6# &fСтиль: " + aplayer.getStyle() + "\n&7\n&7Кликните, чтобы написать\nсообщение этому игроку"));
+			Text hoverText = new Text(Other.color("&6# &fСтиль: " + aplayer.getStyle() + "\n&7\n&7Кликните, чтобы написать\nсообщение этому игроку"));
 
 			HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, hoverText);
 			component.setHoverEvent(hoverEvent);

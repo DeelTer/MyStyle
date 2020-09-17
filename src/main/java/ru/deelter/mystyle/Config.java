@@ -84,7 +84,7 @@ public class Config {
 		MSG_IGNORE_REMOVE = Other.color(messages.getString("chat.player-ignore-remove"));
 
 		/* Permissions */
-		ConfigurationSection permissions = config.getConfigurationSection("settings");
+		ConfigurationSection permissions = config.getConfigurationSection("permissions");
 		MUTE_PERM = permissions.getString("mute");
 		STYLE_PERM = permissions.getString("style");
 		NOTIFY_PERM = permissions.getString("notify");

@@ -20,12 +20,12 @@ public class Try implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        String message = Other.strip(String.join(" ", args).substring(args[0].length() + 1));
+        String message = Other.strip(String.join(" ", args);
 
         String result = Math.random() < 0.5D ? "&aУспешно" : "&cНеудачно";
         TextComponent component = new TextComponent(Other.color("&6* &f" + player.getName() + "" + message + " [" + result + "&f]&6 *"));
 
-        HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(Other.color("&7Кликните, чтобы выполнить\nкоманду /try")));
+        HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(Other.color("&6Кликните&7, чтобы выполнить\nкоманду /try")));
         component.setHoverEvent(hoverEvent);
 
         ClickEvent clickEvent = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/try ");

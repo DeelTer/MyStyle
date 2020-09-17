@@ -26,7 +26,7 @@ public class Roll implements CommandExecutor {
 
         TextComponent component = new TextComponent(Other.color("&6* &f" + player.getName() + " бросает кости: " + result + "&6 *"));
 
-        HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(Other.color("&7Кликните, чтобы выполнить\nкоманду /try")));
+        HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(Other.color("&6Кликните&7, чтобы выполнить\nкоманду /roll")));
         component.setHoverEvent(hoverEvent);
 
         ClickEvent clickEvent = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/roll ");

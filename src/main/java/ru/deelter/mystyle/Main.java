@@ -48,13 +48,13 @@ public class Main extends JavaPlugin implements Listener {
 		if (Config.ENABLE_PRIVATE) {
 			getCommand("tell").setExecutor(new Tell());
 			getCommand("ignore").setExecutor(new Ignore());
-			LoggerManager.log("&aАктивируем классы для приватных сообщений");
+			LoggerManager.log("&fАктивируем классы для приватных команд");
 		}
 
 		if (Config.ENABLE_ROLEPLAY) {
 			getCommand("try").setExecutor(new Try());
 			getCommand("roll").setExecutor(new Roll());
-			LoggerManager.log("&aАктивируем классы для приватных сообщений");
+			LoggerManager.log("&fАктивируем классы для RolePlay команд");
 		}
 
 		LoggerManager.log("&aПлагин успешно включен");

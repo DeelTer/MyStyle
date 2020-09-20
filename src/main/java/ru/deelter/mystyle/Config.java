@@ -4,6 +4,9 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import ru.deelter.mystyle.utils.Other;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Config {
 
 	/* Settings */
@@ -62,7 +65,6 @@ public class Config {
 		ConfigurationSection settings = config.getConfigurationSection("settings");
 		ENABLE_PRIVATE = settings.getBoolean("chat.commands.private");
 		ENABLE_ROLEPLAY = settings.getBoolean("chat.commands.roleplay");
-
 
 		ENABLE_CHAT_COOLDOWN = settings.getBoolean("chat.cooldown.enable");
 		CHAT_COOLDOWN = settings.getInt("chat.cooldown.seconds");

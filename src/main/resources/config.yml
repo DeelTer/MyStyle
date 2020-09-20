@@ -27,11 +27,6 @@ settings:
     cooldown:
       enable: false
       seconds: 1
-    replacer:
-      enable: false
-      words:
-        - "пидарас=представитель ЛГБТ сообщества"
-        - "шлюха=девушка лёгкого поведения"
 
   logs:
     console: true #Logs requests and other in console

@@ -24,22 +24,22 @@ settings:
     commands:
       private: true #Private commands: /msg /tell /ignore
       roleplay: true #Roleplay commands: /try /me, /do, /roll
-    chat-cooldown:
+    cooldown:
       enable: false
       seconds: 1
+    replacer:
+      enable: false
+      words:
+        - "пидарас=представитель ЛГБТ сообщества"
+        - "шлюха=девушка лёгкого поведения"
+
   logs:
     console: true #Logs requests and other in console
     file: true #Logs requests in MyRequests/logs/ID.txt
 
-  warning-words:
-    - "шлюха"
-    - "гандон"
-    - "пидарас"
-    - "мать ебал"
-
 messages:
-  no-perm: '&6You have no permissions to do this'
-  reload: '&aConfiguration reloaded!'
+  no-perm: '&8[&c#&8]&c У вас нету прав на использование'
+  reload: '&8[&c#&8]&f Конфигурация перезагружена'
   chat:
     no-players: "&8[&c#&8]&c В вашем радиусе нет игроков"
     global-disable: "&8[&c#&8]&c У вас отключен глобальный чат"

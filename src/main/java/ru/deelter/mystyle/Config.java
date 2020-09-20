@@ -64,8 +64,8 @@ public class Config {
 		ENABLE_ROLEPLAY = settings.getBoolean("chat.commands.roleplay");
 
 
-		ENABLE_CHAT_COOLDOWN = settings.getBoolean("chat.chat-cooldown.enable");
-		CHAT_COOLDOWN = settings.getInt("chat.chat-cooldown.seconds");
+		ENABLE_CHAT_COOLDOWN = settings.getBoolean("chat.cooldown.enable");
+		CHAT_COOLDOWN = settings.getInt("chat.cooldown.seconds");
 
 		CONSOLE_LOGS = settings.getBoolean("logs.console");
 		FILE_LOGS = settings.getBoolean("logs.file");

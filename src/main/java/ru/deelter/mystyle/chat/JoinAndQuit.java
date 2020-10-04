@@ -30,7 +30,7 @@ public class JoinAndQuit implements Listener {
 		for (Player online : Bukkit.getOnlinePlayers()) {
 
 			APlayer ap = APlayer.getPlayer(online);
-			if (!ap.isNotifyVisible())
+			if (ap.isNotifyVisible())
 				continue;
 
 			online.sendMessage(message);

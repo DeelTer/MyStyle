@@ -14,6 +14,7 @@ import ru.deelter.mystyle.utils.LoggerManager;
 import ru.deelter.mystyle.utils.Other;
 
 public class Tell implements CommandExecutor {
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length <= 1) {

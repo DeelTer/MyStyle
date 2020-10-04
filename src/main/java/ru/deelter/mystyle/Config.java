@@ -4,9 +4,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import ru.deelter.mystyle.utils.Other;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Config {
 
 	/* Settings */

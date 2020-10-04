@@ -32,7 +32,7 @@ public class Roll implements CommandExecutor {
         ClickEvent clickEvent = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/roll ");
         component.setClickEvent(clickEvent);
 
-        player.getLocation().getNearbyPlayers(100).forEach(target -> target.sendMessage(component));
+        player.getLocation().getNearbyPlayers(50).forEach(target -> target.sendMessage(component));
         return true;
     }
 }

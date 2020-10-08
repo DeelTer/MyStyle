@@ -35,11 +35,13 @@ public class Tell implements CommandExecutor {
             return true;
         }
 
+        /*
         IgnoreManager im = new IgnoreManager(target.getUniqueId().toString());
         if (im.getIgnoreList().contains(player.getUniqueId().toString())) {
             player.sendMessage(Config.MSG_PLAYER_IGNORE_YOU);
             return true;
         }
+        */
 
         TextComponent chat = new TextComponent(Other.color("&8[&7" + player.getName() + "&8]&f ") + msg);
         chat.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + label + " " + player.getName() + " "));

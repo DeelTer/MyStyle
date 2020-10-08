@@ -33,10 +33,11 @@ public class Ignore implements CommandExecutor {
             return true;
         }
 
+        /*
         IgnoreManager im = new IgnoreManager(player.getUniqueId().toString());
         List<UUID> ignore = im.getIgnoreList();
 
-        if (ignore.contains(target.getUniqueId().toString())) {
+        if (ignore.contains(target.getUniqueId())) {
             player.sendMessage(Config.MSG_IGNORE_REMOVE.replace("%PLAYER%", args[0]));
             im.setIgnore(target.getUniqueId(), false);
             return true;
@@ -44,6 +45,7 @@ public class Ignore implements CommandExecutor {
 
         im.setIgnore(target.getUniqueId(), true);
         player.sendMessage(Config.MSG_IGNORE_ADD.replace("%PLAYER%", args[0]));
+        */
         return true;
     }
 }

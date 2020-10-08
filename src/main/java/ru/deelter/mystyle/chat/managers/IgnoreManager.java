@@ -4,9 +4,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import ru.deelter.mystyle.Main;
 import ru.deelter.mystyle.utils.LoggerManager;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
@@ -20,17 +18,15 @@ public class IgnoreManager {
     public IgnoreManager(String uuid) {
         this.folder = new File(Main.getInstance().getDataFolder() + File.separator + "ignores");
         this.file = new File(folder, uuid + ".yml");
+
+        YamlConfiguration ign = YamlConfiguration.loadConfiguration(file);
+        ign.set("ignore", new ArrayList<>());
+        this.config = ign;
     }
 
     /* Does this player exist in the folder */
     public boolean hasPlayer() {
         return file.exists();
-    }
-
-    /* Get file as configuration */
-    public YamlConfiguration getConfiguration() {
-        config = YamlConfiguration.loadConfiguration(file);
-        return config;
     }
 
     public void saveConfiguration() {
@@ -52,12 +48,16 @@ public class IgnoreManager {
         if (b) list.add(uuid);
         else list.remove(uuid);
 
+        List<String> newList = new ArrayList<>();
+        list.forEach(s -> newList.add(s.toString()));
+
         config.set("ignore", list);
         saveConfiguration();
     }
 
     public List<UUID> getIgnoreList() {
-        List<String> players = new ArrayList<>(config.getStringList("ignore"));
+        List<String> players = config.getStringList("ignore");
+
         List<UUID> list = new ArrayList<>();
         players.forEach(p -> list.add(UUID.fromString(p)));
 

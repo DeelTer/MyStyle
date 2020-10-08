@@ -1,6 +1,8 @@
 package ru.deelter.mystyle;
 
 import java.io.File;
+import java.util.Objects;
+
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -30,12 +32,13 @@ public class Main extends JavaPlugin implements Listener {
 
 		File config = new File(instance.getDataFolder().getPath() + "/config.yml");
 		if (!config.exists()) {
-			LoggerManager.log("&cКонфиг не найден. Загружаем новый");
+			LoggerManager.log("&cКонфиг не найден. Загружаем свой..");
 			saveDefaultConfig();
 		}
 
 		Config.reloadConfig();
 		Database.setupDatabase(this);
+		APlayer.runSaveTimer();
 
 		/* Listeners */
 		PluginManager pm = getServer().getPluginManager();
@@ -44,16 +47,16 @@ public class Main extends JavaPlugin implements Listener {
 		pm.registerEvents(new Chat(), this);
 
 		/* Commands */
-		getCommand("chatsettings").setExecutor(new ChatSettings());
+		Objects.requireNonNull(getCommand("chatsettings")).setExecutor(new ChatSettings());
 		if (Config.ENABLE_PRIVATE) {
-			getCommand("tell").setExecutor(new Tell());
-			getCommand("ignore").setExecutor(new Ignore());
+			Objects.requireNonNull(getCommand("tell")).setExecutor(new Tell());
+			Objects.requireNonNull(getCommand("ignore")).setExecutor(new Ignore());
 			LoggerManager.log("&fАктивируем классы для приватных команд");
 		}
 
 		if (Config.ENABLE_ROLEPLAY) {
-			getCommand("try").setExecutor(new Try());
-			getCommand("roll").setExecutor(new Roll());
+			Objects.requireNonNull(getCommand("try")).setExecutor(new Try());
+			Objects.requireNonNull(getCommand("roll")).setExecutor(new Roll());
 			LoggerManager.log("&fАктивируем классы для RolePlay команд");
 		}
 

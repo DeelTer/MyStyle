@@ -1,9 +1,5 @@
 package ru.deelter.mystyle.chat;
 
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.api.chat.hover.content.Text;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -70,10 +66,9 @@ public class Chat implements Listener {
 
 			String prefix = isGlobal ? Other.color(aRecipient.getGlobalPrefix()) : Other.color(aRecipient.getLocalPrefix());
 
-			/* ChatComponent form */
+			/* ChatComponent form
 			APlayer aplayer = APlayer.getPlayer(player);
 			TextComponent component = new TextComponent(prefix + style);
-
 			Text hoverText = new Text(Other.color("&6# &fСтиль: " + aplayer.getStyle() + "\n&7\n&7Кликните, чтобы написать\nсообщение этому игроку"));
 
 			HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, hoverText);
@@ -83,7 +78,9 @@ public class Chat implements Listener {
 			component.setClickEvent(clickEvent);
 
 			recipient.sendMessage(component);
-			//recipient.sendMessage(prefix + style);
+			*/
+
+			recipient.sendMessage(prefix + style);
 		}
 
 		/* Logger */

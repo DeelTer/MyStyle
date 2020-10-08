@@ -11,7 +11,7 @@
 #TWITTER: twitter.com/roma200315
 #YOUTUBE: www.youtube.com/channel/UCRACU2JfOfClrlEHImv5pYw
 
-default-values:оку
+default-values:
   style: '&f%PLAYER%&f: %MESSAGE%'
   global-prefix: '&6G '
   local-prefix: '&aL '

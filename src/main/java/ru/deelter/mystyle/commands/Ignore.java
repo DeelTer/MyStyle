@@ -6,8 +6,12 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ru.deelter.mystyle.Config;
+import ru.deelter.mystyle.chat.managers.IgnoreManager;
 import ru.deelter.mystyle.player.APlayer;
 import ru.deelter.mystyle.utils.Other;
+
+import java.util.List;
+import java.util.UUID;
 
 public class Ignore implements CommandExecutor {
 
@@ -29,14 +33,16 @@ public class Ignore implements CommandExecutor {
             return true;
         }
 
-        APlayer aPlayer = APlayer.getPlayer(player);
-        if (aPlayer.getIgnoreList().contains(target.getUniqueId().toString())) {
+        IgnoreManager im = new IgnoreManager(player.getUniqueId().toString());
+        List<UUID> ignore = im.getIgnoreList();
+
+        if (ignore.contains(target.getUniqueId().toString())) {
             player.sendMessage(Config.MSG_IGNORE_REMOVE.replace("%PLAYER%", args[0]));
-            aPlayer.setIgnore(target.getUniqueId(), false);
+            im.setIgnore(target.getUniqueId(), false);
             return true;
         }
 
-        aPlayer.setIgnore(target.getUniqueId(), true);
+        im.setIgnore(target.getUniqueId(), true);
         player.sendMessage(Config.MSG_IGNORE_ADD.replace("%PLAYER%", args[0]));
         return true;
     }

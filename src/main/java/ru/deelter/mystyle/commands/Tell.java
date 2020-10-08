@@ -9,7 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ru.deelter.mystyle.Config;
-import ru.deelter.mystyle.player.APlayer;
+import ru.deelter.mystyle.chat.managers.IgnoreManager;
 import ru.deelter.mystyle.utils.LoggerManager;
 import ru.deelter.mystyle.utils.Other;
 
@@ -35,25 +35,25 @@ public class Tell implements CommandExecutor {
             return true;
         }
 
-        APlayer aTarget = APlayer.getPlayer(target);
-        if (aTarget.getIgnoreList().contains(player.getUniqueId().toString())) {
+        IgnoreManager im = new IgnoreManager(target.getUniqueId().toString());
+        if (im.getIgnoreList().contains(player.getUniqueId().toString())) {
             player.sendMessage(Config.MSG_PLAYER_IGNORE_YOU);
             return true;
         }
 
-            TextComponent chat = new TextComponent(Other.color("&8[&7" + player.getName() + "&8]&f ") + msg);
-            chat.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + label + " " + player.getName() + " "));
-            target.sendMessage(chat);
+        TextComponent chat = new TextComponent(Other.color("&8[&7" + player.getName() + "&8]&f ") + msg);
+        chat.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + label + " " + player.getName() + " "));
+        target.sendMessage(chat);
 
-            String message = Other.color("&8[&7" + player.getName() + " &6->&7 " + args[0] + "&8]&f ") + msg;
-            player.sendMessage(message);
+        String message = Other.color("&8[&7" + player.getName() + " &6->&7 " + args[0] + "&8]&f ") + msg;
+        player.sendMessage(message);
 
-            /* Sound */
-            target.playSound(player.getLocation(), Sound.ENTITY_ITEM_PICKUP, 1, 1);
-            player.playSound(player.getLocation(), Sound.ENTITY_ITEM_PICKUP, 1, 1);
+        /* Sound */
+        target.playSound(player.getLocation(), Sound.ENTITY_ITEM_PICKUP, 1, 1);
+        player.playSound(player.getLocation(), Sound.ENTITY_ITEM_PICKUP, 1, 1);
 
-            /* Log */
-            LoggerManager.log(message);
-            return true;
+        /* Log */
+        LoggerManager.log(message);
+        return true;
     }
 }

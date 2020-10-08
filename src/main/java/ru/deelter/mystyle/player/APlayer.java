@@ -1,7 +1,9 @@
 package ru.deelter.mystyle.player;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import ru.deelter.mystyle.Config;
+import ru.deelter.mystyle.Main;
 import ru.deelter.mystyle.database.Database;
 
 import java.sql.Connection;
@@ -21,7 +23,6 @@ public class APlayer {
 	private boolean mute = Config.MUTE;
 	private boolean notify = Config.NOTIFY;
 
-	private static final List<String> ignore = new ArrayList<>();
 	private static final Map<UUID, APlayer> players = new HashMap<>();
 
 	public APlayer(UUID uuid) {
@@ -83,15 +84,6 @@ public class APlayer {
 		return notify;
 	}
 
-	public void setIgnore(UUID uuid, boolean add) {
-		if (add) ignore.add(uuid.toString());
-		else ignore.remove(uuid.toString());
-	}
-
-	public List<String> getIgnoreList() {
-		return ignore;
-	}
-
 	public static Map<UUID, APlayer> getPlayers() {
 		return players;
 	}
@@ -133,19 +125,22 @@ public class APlayer {
 	/* Save player */
 	public void save() {
 		try (Connection con = Database.openConnection()) {
-			String sql = "REPLACE INTO Players (UUID,IGNORE,STYLE,GLOBAL_PREFIX,LOCAL_PREFIX,MUTE,NOTIFY) VALUES(?,?,?,?,?,?,?);";
+			String sql = "REPLACE INTO Players (UUID,STYLE,GLOBAL_PREFIX,LOCAL_PREFIX,MUTE,NOTIFY) VALUES(?,?,?,?,?,?);";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, uuid.toString());
-            ps.setString(2, String.join(",", ignore));
-			ps.setString(3, style);
-			ps.setString(4, globalPrefix);
-			ps.setString(5, localPrefix);
-			ps.setBoolean(6, mute);
-			ps.setBoolean(7, notify);
+			ps.setString(2, style);
+			ps.setString(3, globalPrefix);
+			ps.setString(4, localPrefix);
+			ps.setBoolean(5, mute);
+			ps.setBoolean(6, notify);
 			ps.executeUpdate();
 			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void runSaveTimer() {
+		Bukkit.getScheduler().runTaskTimerAsynchronously(Main.getInstance(), () -> players.values().forEach(APlayer::save), 0L, 20L);
 	}
 }

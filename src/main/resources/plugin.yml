@@ -45,13 +45,6 @@ commands:
     permission: chatsettings.roleplay.try
     permission-message: You do not have permission!
 
-  me:
-    aliases: [ "eme" ]
-    description: throw dice
-    usage: /<command>
-    permission: chatsettings.roleplay.me
-    permission-message: You do not have permission!
-
 permissions:
   chatsettings.command:
     description: Allows main MyStyle command

@@ -18,6 +18,7 @@ public class PlayerIdentification implements Listener {
 		UUID uuid = e.getUniqueId();
 		APlayer aplayer = new APlayer(uuid);
 		aplayer.load();
+
 		aplayer.register();
 	}
 

@@ -19,7 +19,6 @@ public class Database {
 		try {
 			con.prepareStatement("CREATE TABLE IF NOT EXISTS `Players`("
 					+ "`UUID` varchar(64) PRIMARY KEY,"
-					+ "`IGNORE` varchar(64) NOT NULL,"
 					+ "`STYLE` varchar(64) NOT NULL,"
 					+ "`GLOBAL_PREFIX` varchar(64) NOT NULL,"
 					+ "`LOCAL_PREFIX` varchar(64) NOT NULL,"

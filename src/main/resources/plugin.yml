@@ -38,6 +38,12 @@ commands:
     permission: chatsettings.roleplay.me
     permission-message: You do not have permission!
 
+  do:
+    description: show situation
+    usage: /<command>
+    permission: chatsettings.roleplay.do
+    permission-message: You do not have permission!
+
   roll:
     aliases: [ "dice" ]
     description: throw dice
@@ -79,6 +85,10 @@ permissions:
 
   #Roleplay permissions
   chatsettings.roleplay.me:
+    description: Allows use command /me
+    default: true
+
+  chatsettings.roleplay.do:
     description: Allows use command /me
     default: true
 

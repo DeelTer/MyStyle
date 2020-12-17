@@ -111,11 +111,6 @@ public class APlayer {
 				localPrefix = rs.getString("LOCAL_PREFIX");
 				mute = rs.getBoolean("MUTE");
 				notify = rs.getBoolean("NOTIFY");
-
-				/*
-				String[] ignoredPlayers = rs.getString("IGNORE").split(",");
-				Collections.addAll(ignore, ignoredPlayers);
-				 */
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

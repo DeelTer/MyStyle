@@ -71,21 +71,6 @@ public class Chat implements Listener {
 			style = style.replace("%MESSAGE%", message);
 
 			String prefix = isGlobal ? Other.color(aRecipient.getGlobalPrefix()) : Other.color(aRecipient.getLocalPrefix());
-
-			/* ChatComponent form
-			APlayer aplayer = APlayer.getPlayer(player);
-			TextComponent component = new TextComponent(prefix + style);
-			Text hoverText = new Text(Other.color("&6# &fСтиль: " + aplayer.getStyle() + "\n&7\n&7Кликните, чтобы написать\nсообщение этому игроку"));
-
-			HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, hoverText);
-			component.setHoverEvent(hoverEvent);
-
-			ClickEvent clickEvent = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/tell " + player.getName());
-			component.setClickEvent(clickEvent);
-
-			recipient.sendMessage(component);
-			*/
-
 			recipient.sendMessage(prefix + style);
 		}
 

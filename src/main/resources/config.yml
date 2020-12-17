@@ -26,7 +26,7 @@ settings:
       private: true #Private commands: /msg /tell /ignore
       roleplay: true #Roleplay commands: /try /me, /do, /roll
     cooldown:
-      enable: true
+      enable: false
       seconds: 1
 
   logs:

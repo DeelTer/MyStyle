@@ -8,6 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import ru.deelter.mystyle.Config;
 import ru.deelter.mystyle.utils.Other;
 
 public class Try implements CommandExecutor {
@@ -23,7 +24,7 @@ public class Try implements CommandExecutor {
         String message = Other.strip(String.join(" ", args));
 
         String result = Math.random() < 0.5D ? "&aУспешно" : "&cНеуспешно";
-        TextComponent component = new TextComponent(Other.color("&6* &f" + player.getName() + " " + message + " [" + result + "&f]&6 *"));
+        TextComponent component = new TextComponent(Other.color("&6*&f" + player.getName() + " " + message + " [" + result + "&f]&6*"));
 
         HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(Other.color("&fПри выполнении команды показывает\nдействие с пометкой&a успешно&f или&c неуспешно" + "\n&f\n&7Кликните, чтобы выполнить\nкоманду /try")));
         component.setHoverEvent(hoverEvent);
@@ -31,7 +32,7 @@ public class Try implements CommandExecutor {
         ClickEvent clickEvent = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/try ");
         component.setClickEvent(clickEvent);
 
-        player.getLocation().getNearbyPlayers(50).forEach(target -> target.sendMessage(component));
+        player.getLocation().getNearbyPlayers(Config.RADIUS).forEach(target -> target.sendMessage(component));
         return true;
     }
 }

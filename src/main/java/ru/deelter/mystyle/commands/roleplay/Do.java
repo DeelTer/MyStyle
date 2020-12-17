@@ -11,9 +11,7 @@ import org.bukkit.entity.Player;
 import ru.deelter.mystyle.Config;
 import ru.deelter.mystyle.utils.Other;
 
-import java.util.Random;
-
-public class Roll implements CommandExecutor {
+public class Do implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -23,14 +21,14 @@ public class Roll implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        int result = new Random().nextInt(100);
+        String message = Other.strip(String.join(" ", args));
 
-        TextComponent component = new TextComponent(Other.color("&6*&f" + player.getName() + " бросает кости: " + result + "&6*"));
+        TextComponent component = new TextComponent(Other.color("&6*&f&o" + player.getName() + " " + message + " &6*"));
 
-        HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(Other.color("&fПри выполнении команды показывает\nслучайное число от &e0&f до &e100" + "\n&f\n&7Кликните, чтобы выполнить\nкоманду /roll")));
+        HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(Other.color("&fПри выполнении команды показывает\nваше РП действие" + "\n&f\n&7Кликните, чтобы выполнить\nкоманду /me")));
         component.setHoverEvent(hoverEvent);
 
-        ClickEvent clickEvent = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/roll ");
+        ClickEvent clickEvent = new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/me ");
         component.setClickEvent(clickEvent);
 
         player.getLocation().getNearbyPlayers(Config.RADIUS).forEach(target -> target.sendMessage(component));

@@ -65,7 +65,7 @@ public class Config {
 		ConfigurationSection settings = config.getConfigurationSection("settings");
 		ConfigurationSection chat = settings.getConfigurationSection("chat");
 
-		ENABLE_GLOBAL = settings.getBoolean("global");
+		ENABLE_GLOBAL = chat.getBoolean("global");
 		ENABLE_PRIVATE = chat.getBoolean("commands.private");
 		ENABLE_ROLEPLAY = chat.getBoolean("commands.roleplay");
 

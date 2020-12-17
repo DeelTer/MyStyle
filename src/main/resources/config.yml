@@ -21,11 +21,12 @@ default-values:
 
 settings:
   chat:
+    global: true
     commands:
       private: true #Private commands: /msg /tell /ignore
       roleplay: true #Roleplay commands: /try /me, /do, /roll
     cooldown:
-      enable: false
+      enable: true
       seconds: 1
 
   logs:
@@ -38,6 +39,7 @@ messages:
   chat:
     no-players: "&8[&c#&8]&c В вашем радиусе нет игроков"
     global-disable: "&8[&c#&8]&c У вас отключен глобальный чат"
+    global-disable-all: "&8[&c#&8]&c На данном сервере отключен глобальный чат"
     cooldown: "&8[&c#&8]&c Вы не можете писать в чат так часто!"
     ignore-you: "&8[&c#&8] &fДанный игрок игнорирует вас"
     player-ignore-add: "&8[&6#&8] &fТеперь вы игнорируете %PLAYER%"

@@ -6,7 +6,7 @@ import ru.deelter.mystyle.utils.Other;
 
 public class Config {
 
-	/* Settings */
+    /* Settings */
 	public static String STYLE;
 	public static String GLOBAL_PREFIX;
 	public static String LOCAL_PREFIX;
@@ -17,6 +17,8 @@ public class Config {
 	public static boolean NOTIFY;
 
 	/* Settings */
+	public static boolean ENABLE_GLOBAL;
+
 	public static boolean ENABLE_PRIVATE;
 	public static boolean ENABLE_ROLEPLAY;
 
@@ -32,6 +34,7 @@ public class Config {
 
 	public static String MSG_NO_PLAYERS;
 	public static String MSG_GLOBAL_DISABLE;
+	public static String MSG_GLOBAL_DISABLE_ALL;
 	public static String MSG_COOLDOWN;
 
 	public static String MSG_PLAYER_IGNORE_YOU;
@@ -60,11 +63,14 @@ public class Config {
 
 		/* Settings */
 		ConfigurationSection settings = config.getConfigurationSection("settings");
-		ENABLE_PRIVATE = settings.getBoolean("chat.commands.private");
-		ENABLE_ROLEPLAY = settings.getBoolean("chat.commands.roleplay");
+		ConfigurationSection chat = settings.getConfigurationSection("chat");
 
-		ENABLE_CHAT_COOLDOWN = settings.getBoolean("chat.cooldown.enable");
-		CHAT_COOLDOWN = settings.getInt("chat.cooldown.seconds");
+		ENABLE_GLOBAL = settings.getBoolean("global");
+		ENABLE_PRIVATE = chat.getBoolean("commands.private");
+		ENABLE_ROLEPLAY = chat.getBoolean("commands.roleplay");
+
+		ENABLE_CHAT_COOLDOWN = chat.getBoolean("cooldown.enable");
+		CHAT_COOLDOWN = chat.getInt("cooldown.seconds");
 
 		CONSOLE_LOGS = settings.getBoolean("logs.console");
 		FILE_LOGS = settings.getBoolean("logs.file");
@@ -76,6 +82,7 @@ public class Config {
 
 		MSG_NO_PLAYERS = Other.color(messages.getString("chat.no-players"));
 		MSG_GLOBAL_DISABLE = Other.color(messages.getString("chat.global-disable"));
+		MSG_GLOBAL_DISABLE_ALL = Other.color(messages.getString("chat.global-disable-all"));
 		MSG_COOLDOWN = Other.color(messages.getString("chat.cooldown"));
 
 		MSG_PLAYER_IGNORE_YOU = Other.color(messages.getString("chat.ignore-you"));

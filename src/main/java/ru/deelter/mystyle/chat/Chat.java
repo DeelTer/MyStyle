@@ -31,11 +31,17 @@ public class Chat implements Listener {
 		if (!message.startsWith("!")) {
 
 			e.getRecipients().removeIf(other -> isFar(player, other));
-			if (e.getRecipients().size() == 1) {
+			if (!Config.MSG_NO_PLAYERS.equalsIgnoreCase("none") && e.getRecipients().size() == 1) {
 				player.sendMessage(Config.MSG_NO_PLAYERS);
 				return;
 			}
 		} else {
+			/* If global chat is off */
+			if (!Config.ENABLE_GLOBAL) {
+				player.sendMessage(Config.MSG_GLOBAL_DISABLE_ALL);
+				return;
+			}
+
 			/* if player disable global chat */
 			if (APlayer.getPlayer(player).isMute()) {
 				player.sendMessage(Config.MSG_GLOBAL_DISABLE);

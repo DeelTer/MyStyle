@@ -12,6 +12,7 @@ import ru.deelter.mystyle.chat.JoinAndQuit;
 import ru.deelter.mystyle.commands.ChatSettings;
 import ru.deelter.mystyle.commands.Ignore;
 import ru.deelter.mystyle.commands.Tell;
+import ru.deelter.mystyle.commands.roleplay.Me;
 import ru.deelter.mystyle.commands.roleplay.Roll;
 import ru.deelter.mystyle.commands.roleplay.Try;
 import ru.deelter.mystyle.database.Database;
@@ -57,6 +58,7 @@ public class Main extends JavaPlugin implements Listener {
 		if (Config.ENABLE_ROLEPLAY) {
 			Objects.requireNonNull(getCommand("try")).setExecutor(new Try());
 			Objects.requireNonNull(getCommand("roll")).setExecutor(new Roll());
+			Objects.requireNonNull(getCommand("me")).setExecutor(new Me());
 			LoggerManager.log("&fАктивируем классы для RolePlay команд");
 		}
 

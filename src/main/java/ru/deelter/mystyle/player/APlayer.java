@@ -141,6 +141,6 @@ public class APlayer {
 	}
 
 	public static void runSaveTimer() {
-		Bukkit.getScheduler().runTaskTimerAsynchronously(Main.getInstance(), () -> players.values().forEach(APlayer::save), 0L, 20L);
+		Bukkit.getScheduler().runTaskTimerAsynchronously(Main.getInstance(), () -> new ArrayList<>(players.values()).forEach(APlayer::save), 0L, 600 * 20L);
 	}
 }

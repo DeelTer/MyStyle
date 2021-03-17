@@ -2,7 +2,7 @@ package ru.deelter.mystyle.utils;
 
 import org.bukkit.Bukkit;
 import ru.deelter.mystyle.Config;
-import ru.deelter.mystyle.Main;
+import ru.deelter.mystyle.MyStyle;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -20,7 +20,7 @@ public class LoggerManager {
             return;
 
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-        File folder = new File(Main.getInstance().getDataFolder() + File.separator + category);
+        File folder = new File(MyStyle.getInstance().getDataFolder() + File.separator + category);
         if (!folder.exists())
             folder.mkdir();
 

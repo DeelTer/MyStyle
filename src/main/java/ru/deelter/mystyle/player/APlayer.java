@@ -3,14 +3,17 @@ package ru.deelter.mystyle.player;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import ru.deelter.mystyle.Config;
-import ru.deelter.mystyle.Main;
+import ru.deelter.mystyle.MyStyle;
 import ru.deelter.mystyle.database.Database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class APlayer {
 
@@ -136,6 +139,6 @@ public class APlayer {
 	}
 
 	public static void runSaveTimer() {
-		Bukkit.getScheduler().runTaskTimerAsynchronously(Main.getInstance(), () -> new ArrayList<>(players.values()).forEach(APlayer::save), 0L, 600 * 20L);
+		Bukkit.getScheduler().runTaskTimerAsynchronously(MyStyle.getInstance(), () -> new ArrayList<>(players.values()).forEach(APlayer::save), 0L, 600 * 20L);
 	}
 }

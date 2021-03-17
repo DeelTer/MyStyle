@@ -1,7 +1,7 @@
 package ru.deelter.mystyle.chat.managers;
 
 import org.bukkit.configuration.file.YamlConfiguration;
-import ru.deelter.mystyle.Main;
+import ru.deelter.mystyle.MyStyle;
 import ru.deelter.mystyle.utils.LoggerManager;
 
 import java.io.File;
@@ -16,7 +16,7 @@ public class IgnoreManager {
     private final Map<String, String> values = new HashMap<>();
 
     public IgnoreManager(String uuid) {
-        this.folder = new File(Main.getInstance().getDataFolder() + File.separator + "ignores");
+        this.folder = new File(MyStyle.getInstance().getDataFolder() + File.separator + "ignores");
         this.file = new File(folder, uuid + ".yml");
 
         YamlConfiguration ign = YamlConfiguration.loadConfiguration(file);

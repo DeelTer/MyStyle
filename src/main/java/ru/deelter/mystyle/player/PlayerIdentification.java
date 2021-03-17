@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import ru.deelter.mystyle.Main;
+import ru.deelter.mystyle.MyStyle;
 
 public class PlayerIdentification implements Listener {
 
@@ -24,7 +24,7 @@ public class PlayerIdentification implements Listener {
 
 	@EventHandler
 	public void onQuit(PlayerQuitEvent e) {
-		Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), () -> {
+		Bukkit.getScheduler().runTaskAsynchronously(MyStyle.getInstance(), () -> {
 			APlayer aplayer = APlayer.getPlayer(e.getPlayer());
 			aplayer.save();
 

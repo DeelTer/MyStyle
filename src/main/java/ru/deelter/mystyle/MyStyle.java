@@ -20,7 +20,7 @@ import ru.deelter.mystyle.player.APlayer;
 import ru.deelter.mystyle.player.PlayerIdentification;
 import ru.deelter.mystyle.utils.LoggerManager;
 
-public class Main extends JavaPlugin implements Listener {
+public class MyStyle extends JavaPlugin implements Listener {
 	
 	public static JavaPlugin instance;
 

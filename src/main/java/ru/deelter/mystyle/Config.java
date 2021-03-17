@@ -48,8 +48,8 @@ public class Config {
 	public static String PREFIX_PERM;
 	
 	public static void reloadConfig() {
-		Main.getInstance().reloadConfig();
-		FileConfiguration config = Main.getInstance().getConfig();
+		MyStyle.getInstance().reloadConfig();
+		FileConfiguration config = MyStyle.getInstance().getConfig();
 
 		/* Default values */
 		ConfigurationSection def = config.getConfigurationSection("default-values");

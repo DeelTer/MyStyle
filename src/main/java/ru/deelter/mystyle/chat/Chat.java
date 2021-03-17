@@ -7,7 +7,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import ru.deelter.mystyle.Config;
-import ru.deelter.mystyle.Main;
+import ru.deelter.mystyle.MyStyle;
 import ru.deelter.mystyle.player.APlayer;
 import ru.deelter.mystyle.utils.LoggerManager;
 import ru.deelter.mystyle.utils.Other;
@@ -88,6 +88,6 @@ public class Chat implements Listener {
 
 	private void startCooldown(UUID uuid, int seconds) {
 		cooldown.add(uuid);
-		Bukkit.getScheduler().runTaskLaterAsynchronously(Main.getInstance(), () -> cooldown.remove(uuid), seconds * 20L);
+		Bukkit.getScheduler().runTaskLaterAsynchronously(MyStyle.getInstance(), () -> cooldown.remove(uuid), seconds * 20L);
 	}
 }
